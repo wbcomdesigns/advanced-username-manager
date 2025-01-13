@@ -115,6 +115,11 @@ class Advanced_Username_Manager {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-advanced-username-manager-admin.php';
+		
+		/* Enqueue wbcom plugin folder file. */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-admin-settings.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-paid-plugin-settings.php';
+		
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -156,6 +161,10 @@ class Advanced_Username_Manager {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'advanced_username_manager_add_admin_menu' );
+		
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'advanced_username_manager_save_options' );
 
 	}
 
