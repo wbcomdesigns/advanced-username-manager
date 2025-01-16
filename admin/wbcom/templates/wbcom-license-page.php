@@ -9,24 +9,24 @@
 	<div class="wbcom-wrap wbcom-plugin-wrapper">
 		<div class="wbcom_admin_header-wrapper">
 			<div id="wb_admin_plugin_name">
-				<?php esc_html_e( 'BuddyPress Business Profile', 'bp-business-profile' ); ?>
+				<?php esc_html_e( 'Advanced Username Manager', 'advanced-username-manager' ); ?>
 				<?php /* translators: %s: */ ?>
-				<span><?php printf( esc_html__( 'Version %s', 'bp-business-profile' ), esc_attr( BP_BUSINESS_PROFILE_VERSION ) ); ?></span>
+				<span><?php printf( esc_html__( 'Version %s', 'advanced-username-manager' ), esc_attr( BP_BUSINESS_PROFILE_VERSION ) ); ?></span>
 			</div>
 			<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 		</div>
 		<div class="wbcom-all-addons-plugins-wrap">
-		<h4 class="wbcom-support-section"><?php esc_html_e( 'Plugin License', 'bp-business-profile' ); ?></h4>
+		<h4 class="wbcom-support-section"><?php esc_html_e( 'Plugin License', 'advanced-username-manager' ); ?></h4>
 		<div class="wb-plugins-license-tables-wrap">
 			<div class="wbcom-license-support-wrapp">
 			<table class="form-table wb-license-form-table desktop-license-headings">
 				<thead>
 					<tr>
-						<th class="wb-product-th"><?php esc_html_e( 'Product', 'bp-business-profile' ); ?></th>
-						<th class="wb-version-th"><?php esc_html_e( 'Version', 'bp-business-profile' ); ?></th>
-						<th class="wb-key-th"><?php esc_html_e( 'Key', 'bp-business-profile' ); ?></th>
-						<th class="wb-status-th"><?php esc_html_e( 'Status', 'bp-business-profile' ); ?></th>
-						<th class="wb-action-th"><?php esc_html_e( 'Action', 'bp-business-profile' ); ?></th>
+						<th class="wb-product-th"><?php esc_html_e( 'Product', 'advanced-username-manager' ); ?></th>
+						<th class="wb-version-th"><?php esc_html_e( 'Version', 'advanced-username-manager' ); ?></th>
+						<th class="wb-key-th"><?php esc_html_e( 'Key', 'advanced-username-manager' ); ?></th>
+						<th class="wb-status-th"><?php esc_html_e( 'Status', 'advanced-username-manager' ); ?></th>
+						<th class="wb-action-th"><?php esc_html_e( 'Action', 'advanced-username-manager' ); ?></th>
 					</tr>
 				</thead>
 			</table>
@@ -34,11 +34,11 @@
 			<table class="form-table wb-license-form-table">
 				<tfoot>
 					<tr>
-						<th class="wb-product-th"><?php esc_html_e( 'Product', 'bp-business-profile' ); ?></th>
-						<th class="wb-version-th"><?php esc_html_e( 'Version', 'bp-business-profile' ); ?></th>
-						<th class="wb-key-th"><?php esc_html_e( 'Key', 'bp-business-profile' ); ?></th>
-						<th class="wb-status-th"><?php esc_html_e( 'Status', 'bp-business-profile' ); ?></th>
-						<th class="wb-action-th"><?php esc_html_e( 'Action', 'bp-business-profile' ); ?></th>
+						<th class="wb-product-th"><?php esc_html_e( 'Product', 'advanced-username-manager' ); ?></th>
+						<th class="wb-version-th"><?php esc_html_e( 'Version', 'advanced-username-manager' ); ?></th>
+						<th class="wb-key-th"><?php esc_html_e( 'Key', 'advanced-username-manager' ); ?></th>
+						<th class="wb-status-th"><?php esc_html_e( 'Status', 'advanced-username-manager' ); ?></th>
+						<th class="wb-action-th"><?php esc_html_e( 'Action', 'advanced-username-manager' ); ?></th>
 					</tr>
 				</tfoot>
 			</table>

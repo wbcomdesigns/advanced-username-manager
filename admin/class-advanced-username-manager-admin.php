@@ -181,7 +181,7 @@ class Advanced_Username_Manager_Admin {
 				<div class="blpro-header">
 					<div class="wbcom_admin_header-wrapper">
 						<div id="wb_admin_plugin_name">
-							<?php esc_html_e( 'BuddyPress Business Profile', 'advanced-username-manager' ); ?>
+							<?php esc_html_e( 'Advanced Username Manager', 'advanced-username-manager' ); ?>
 							<?php /* translators: %s: */ ?>
 							<span><?php printf( esc_html__( 'Version %s', 'advanced-username-manager' ), esc_attr( ADVANCED_USERNAME_MANAGER_VERSION ) ); ?></span>
 						</div>

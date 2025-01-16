@@ -27,8 +27,8 @@ if ( ! class_exists( 'Wbcom_Paid_Plugin_Settings' ) ) {
 		public function wbcom_admin_license_page() {
 			add_submenu_page(
 				'wbcomplugins',
-				esc_html__( 'License', 'bp-business-profile' ),
-				esc_html__( 'License', 'bp-business-profile' ),
+				esc_html__( 'License', 'advanced-username-manager' ),
+				esc_html__( 'License', 'advanced-username-manager' ),
 				'manage_options',
 				'wbcom-license-page',
 				array( $this, 'wbcom_license_submenu_page_callback' )
@@ -45,7 +45,7 @@ if ( ! class_exists( 'Wbcom_Paid_Plugin_Settings' ) ) {
 			<li class="wb_admin_nav_item <?php echo esc_attr( $license_page_active ); ?>">
 				<a href="<?php echo esc_url( get_admin_url() ) . 'admin.php?page=wbcom-license-page'; ?>" id="wb_admin_nav_trigger_support">
 					<i class="fa fa-wpforms" aria-hidden="true"></i>
-					<h4><?php esc_html_e( 'License', 'bp-business-profile' ); ?></h4>
+					<h4><?php esc_html_e( 'License', 'advanced-username-manager' ); ?></h4>
 				</a>
 			</li>
 			<?php

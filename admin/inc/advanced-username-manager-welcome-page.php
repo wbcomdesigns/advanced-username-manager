@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="wbcom-support-info-widgets">
 						<div class="wbcom-support-inner">
 						<h3><span class="dashicons dashicons-book"></span><?php esc_html_e( 'Documentation', 'advanced-username-manager' ); ?></h3>
-						<p><?php esc_html_e( 'We have prepared an extensive guide on BuddyPress Business Profile to learn all aspects of the plugin. You will find most of your answers here.', 'advanced-username-manager' ); ?></p>
+						<p><?php esc_html_e( 'We have prepared an extensive guide on Advanced Username Manager to learn all aspects of the plugin. You will find most of your answers here.', 'advanced-username-manager' ); ?></p>
 						<a href="<?php echo esc_url( 'https://docs.wbcomdesigns.com/doc_category/advanced-username-manager/' ); ?>" class="button button-primary button-welcome-support" target="_blank"><?php esc_html_e( 'Read Documentation', 'advanced-username-manager' ); ?></a>
 						</div>
 					</div>
