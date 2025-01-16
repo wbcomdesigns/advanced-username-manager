@@ -115,11 +115,11 @@ class Advanced_Username_Manager {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-advanced-username-manager-admin.php';
-		
+
 		/* Enqueue wbcom plugin folder file. */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-admin-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-paid-plugin-settings.php';
-		
+
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -161,9 +161,9 @@ class Advanced_Username_Manager {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		
+
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'advanced_username_manager_add_admin_menu' );
-		
+
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'advanced_username_manager_save_options' );
 
 	}
@@ -182,9 +182,11 @@ class Advanced_Username_Manager {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		
-		$this->loader->add_action( 'wp_ajax_aum_update_username', $plugin_public, 'advanced_username_manager_update_username' );		
-		$this->loader->add_action( 'wp_ajax_check_username_availability', $plugin_public, 'aum_check_username_availability' );		
+
+		$this->loader->add_action( 'wp_ajax_aum_update_username', $plugin_public, 'advanced_username_manager_update_username' );
+		$this->loader->add_action( 'wp_ajax_check_username_availability', $plugin_public, 'aum_check_username_availability' );
+
+		$this->loader->add_action( 'bp_setup_nav', $plugin_public, 'advanced_username_manager_bp_nav_setup', 15 );
 
 	}
 

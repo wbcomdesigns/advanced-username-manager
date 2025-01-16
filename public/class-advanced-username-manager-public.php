@@ -313,5 +313,54 @@ The {$site_name} Team</p>";
 
 		}
 	}
+	
+	public function advanced_username_manager_bp_nav_setup() {
+		
+		$settings_link = bp_displayed_user_domain() . bp_get_settings_slug() . '/';
 
+		bp_core_new_subnav_item( array(
+			'name'            => esc_html__( 'Username Change', 'advanced-username-manager' ),
+			'slug'            => 'username-change',
+			'parent_url'      => $settings_link,
+			'parent_slug'     => buddypress()->settings->slug,
+			'screen_function' => array( $this, 'advanced_username_manager_change_settings_screen' ),
+			'position'        => 30,
+			'user_has_access' => apply_filters( 'bp_username_changer_user_has_access', $this->aum_user_can_update_username() ),
+		) );
+	}
+	
+	/**
+	 * Can the current user update the user name for the displayed user?
+	 *
+	 * @return bool
+	 */
+	public function aum_user_can_update_username() {
+		return apply_filters( 'aum_username_changer_user_can_update', bp_is_my_profile() || is_super_admin() );
+	}
+	
+	/**
+	 * Show/Update Username
+	 */
+	public function advanced_username_manager_change_settings_screen() {
+		
+		if ( ! $this->aum_user_can_update_username() ) {
+			return;
+		}
+		// show title &form.
+		add_action( 'bp_template_title', array( $this, 'advanced_username_manager_print_title' ) );
+		add_action( 'bp_template_content', array( $this, 'advanced_username_manager_print_form' ) );
+
+		bp_core_load_template( apply_filters( 'aum_bp_username_changer_template_settings', 'members/single/plugins' ) );
+	}
+	
+	/**
+	 * Settings content title
+	 */
+	public function advanced_username_manager_print_title() {
+		 esc_html_e( 'Change Username', 'bp-username-changer' );
+	}
+	
+	public function advanced_username_manager_print_form() {		
+		echo do_shortcode( '[username_manager]');
+	}
 }
