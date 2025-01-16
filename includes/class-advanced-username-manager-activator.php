@@ -30,6 +30,22 @@ class Advanced_Username_Manager_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		global $wpdb;
+		
+		$table_name 		= $wpdb->prefix . 'username_change_logs';
+		$charset_collate 	= $wpdb->get_charset_collate();
+		
+		if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
+			$bpht_sql = "CREATE TABLE $table_name (
+				id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+				user_id  bigint(20),				
+				old_username varchar(255),
+				new_username  varchar(255),
+				created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+				PRIMARY KEY (id)) {$charset_collate};";
+			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+			dbDelta( $bpht_sql );
+		}
 
 	}
 

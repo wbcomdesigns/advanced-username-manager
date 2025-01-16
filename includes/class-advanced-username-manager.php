@@ -176,11 +176,14 @@ class Advanced_Username_Manager {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
+		global $aum_general_settings;
+		$aum_general_settings = get_option( 'advanced_username_manager_general_settings' );
 		$plugin_public = new Advanced_Username_Manager_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		
+		$this->loader->add_action( 'wp_ajax_aum_update_username', $plugin_public, 'advanced_username_manager_update_username' );		
 
 	}
 

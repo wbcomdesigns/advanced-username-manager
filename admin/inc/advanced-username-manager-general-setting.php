@@ -24,7 +24,7 @@ $limit_options    = [
 					
 $enable_username 	= ( isset( $general_settings['enable_username'] ) ) ? $general_settings['enable_username'] : '';
 $user_roles 		= ( isset( $general_settings['user_roles'] ) ) ? $general_settings['user_roles'] : '';
-$limit_days 		= ( isset( $general_settings['limit_days'] ) ) ? $general_settings['limit_days'] : '';
+$limit_days 		= ( isset( $general_settings['limit_days'] ) ) ? $general_settings['limit_days'] : '7';
 $min_username_length	= ( isset( $general_settings['min_username_length'] ) ) ? $general_settings['min_username_length'] : '';
 $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $general_settings['max_username_length'] : '';
 $allowed_characters	= ( isset( $general_settings['allowed_characters'] ) ) ? $general_settings['allowed_characters'] : '';
@@ -47,7 +47,7 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Enable username', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Manage visibility of Education and Work tab under setting on single Business Profile', 'advanced-username-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Manage to change/update username', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<label class="wb-switch">
@@ -92,7 +92,7 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Minimum username length', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Manage visibility of Education and Work tab under setting on single Business Profile', 'advanced-username-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'User can set minumu username length', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">								
 								<input name="advanced_username_manager_general_settings[min_username_length]" type="text" class="regular-text" value="<?php echo esc_attr($min_username_length);?>" id="min_username_length">								
@@ -102,7 +102,7 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Maximum username length', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Manage visibility of Education and Work tab under setting on single Business Profile', 'advanced-username-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'User can set maximum username length', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<input name="advanced_username_manager_general_settings[max_username_length]" type="text" class="regular-text" value="<?php echo esc_attr($max_username_length);?>" id="max_username_length">
@@ -112,7 +112,7 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Allowed characters.', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Manage visibility of Education and Work tab under setting on single Business Profile', 'advanced-username-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Only Allowed characters', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<input name="advanced_username_manager_general_settings[allowed_characters]" type="text" class="regular-text" value="<?php echo esc_attr($allowed_characters);?>" id="allowed_characters">
@@ -122,7 +122,7 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Prohibited words or patterns.', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Manage visibility of Education and Work tab under setting on single Business Profile', 'advanced-username-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Don\'t allowed prohibited words or patterns ', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<input name="advanced_username_manager_general_settings[prohibited_words]" type="text" class="regular-text" value="<?php echo esc_attr($prohibited_words);?>" id="prohibited_words">
