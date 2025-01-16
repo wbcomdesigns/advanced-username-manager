@@ -88,13 +88,53 @@
 			
 			// Display message
 			$('form.aum-standard-form p.aum-error').remove();
-			if (! isValid) {
+			$('form.aum-standard-form p.aum-success').remove();
+			if (! isValid ) {
 				$("form.aum-standard-form #aum_new_user_input_field").after(message);
 				$('#username_change_submit').attr('disabled','disabled');
 			} else {
 				$('form.aum-standard-form p.aum-error').remove();
+				$('form.aum-standard-form p.aum-success').remove();
 				$('#username_change_submit').removeAttr('disabled');
+				
+				if ( username.length >= 2 ) { // Start autocomplete after 2 characters
+					$.ajax({
+						url: aum_options.ajaxurl,
+						type: "post",
+						dataType: "json",
+						data: {
+							action: "check_username_availability",
+							nonce: aum_options.ajax_nonce,
+							username: username,
+						},
+						success: function( response ) {
+							$('form.aum-standard-form p.aum-success').remove();
+							if( response.data.available	== false ) {
+								var suggestions = response.data.suggestions;							
+								var suggestionList = '';
+								if (suggestions.length > 0) {
+									suggestions.forEach(function(item) {
+										suggestionList += '<li style="padding: 5px; cursor: pointer;">' + item + '</li>';
+									});
+									$('#aum-autocomplete-suggestions').html(suggestionList).show();
+								} 
+							} else if( response.data.available	== true ) {
+								$("form.aum-standard-form #aum_new_user_input_field").after('<p class="aum-success">' + response.data.message	 + '</p>');
+								$('#aum-autocomplete-suggestions').hide();
+							}
+						}
+					});
+				} else {
+					$('#aum-autocomplete-suggestions').hide();
+				}
+				
 			}
+		});
+
+		// Select suggestion on click
+		$(document).on('click', '#aum-autocomplete-suggestions li', function() {
+			$('#aum_new_user_name').val($(this).text());
+			$('#aum-autocomplete-suggestions').hide();
 		});
 	});
 

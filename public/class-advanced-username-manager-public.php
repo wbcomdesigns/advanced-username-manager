@@ -140,6 +140,7 @@ class Advanced_Username_Manager_Public {
 				<div id="aum_new_user_input_field" class="aum-input-field">
 					<label for="new_user_name"><?php esc_html_e( 'New Username', 'advanced-username-manager' ) ?></label>
 					<input type="text" name="new_user_name" id="aum_new_user_name" value="" class="settings-input"/>
+					<ul id="aum-autocomplete-suggestions"></ul>
 				</div>				
 
 				<?php wp_nonce_field( 'advanced-username-change' ); ?>
@@ -155,6 +156,7 @@ class Advanced_Username_Manager_Public {
 	public function advanced_username_manager_update_username() {
 		
 		check_ajax_referer( 'advanced-username-change', 'nonce' );
+		
 		global $wpdb, $aum_general_settings;
 		$table_name 	= $wpdb->prefix . 'username_change_logs';
 		$user_id		= get_current_user_id();
@@ -200,7 +202,7 @@ class Advanced_Username_Manager_Public {
 		if ( username_exists( $new_user_name ) ) {			
 			
 			$retval = array(				
-				'error_message'	=> sprintf( __( 'The Username %s already exists. Please use a different username!', 'advanced-username-manager' ), $new_user_name ),
+				'error_message'	=> esc_html__( 'Sorry, this username is already in use. Please try another one.', 'advanced-username-manager' ),
 			);
 			wp_send_json_error( $retval );
 		}
@@ -231,6 +233,8 @@ class Advanced_Username_Manager_Public {
 							'created_date'	=> date_i18n( 'Y-m-d H:i:s' ),
 						)
 					);
+					
+		$this->advanced_username_manager_send_mail( $user_id, $new_user_name );
 		
 		/* Auto Login after change the username */
 		wp_clear_auth_cookie();
@@ -250,6 +254,64 @@ class Advanced_Username_Manager_Public {
 		$result['success_message'] = esc_html__( 'Username has beed changed Successfully!', 'advanced-username-manager' );
 
 		wp_send_json_success( $result );
+	}
+	
+	public function advanced_username_manager_send_mail( $user_id, $new_user_name ) {
+		$user 			= get_userdata( $user_id );
+		$site_name     	= get_bloginfo( 'name' );
+		$user_email   	= $user->user_email;
+		$email_subject 	= apply_filters( 'advanced_username_manager_email_subject', sprintf( esc_html__('%s Your Username Has Been Successfully Updated', 'advanced-username-manager'), $site_name ) );
+		$email_content 	= "<p>Hello {$user->display_name},</p>
+
+<p>We're writing to let you know that your username on MyAwesomeSite has been successfully updated.</p>
+
+<p>Your new username is: <strong>{$new_user_name}</strong></p>
+
+<p>If you did not request this change, please contact our support team immediately to secure your account.</p>
+
+<p>Thank you for being part of {$site_name}!</p>
+
+<p>Best regards, <br />
+The {$site_name} Team</p>";
+		$email_content = apply_filters( 'bp_business_review_email_content', $email_content );
+
+		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+		wp_mail( $user_email, $email_subject, $email_content, $headers );		
+	}
+	
+	public function aum_check_username_availability() {
+		// Check nonce for security
+
+		check_ajax_referer( 'advanced-username-change', 'nonce' );
+
+		$username = sanitize_text_field($_POST['username']);
+
+		if (strlen($username) < 3) {
+
+			wp_send_json_error(['message' => esc_html__('Username must be at least 3 characters long.', 'advanced-username-manager')]);
+
+		}
+
+		// Check if username exists in the database
+
+		if ( username_exists($username) ) {
+
+			$suggestions = [];
+			// Add suffixes
+			$suggestions[] = $username . '123';
+			$suggestions[] = $username . date('Y');
+			$suggestions[] = $username . date('d');
+			// Add prefixes
+			$suggestions[] = 'my' . ucfirst($username);
+			$suggestions[] = 'the' . ucfirst($username);
+			$suggestions[] = 'best' . ucfirst($username);
+			$suggestions[] = $username . rand(100, 999);			
+			wp_send_json_success(['available' => false, 'suggestions' => array_unique($suggestions)]);
+		} else {
+
+			wp_send_json_success(['available' => true,'message'=> esc_html__( 'Great! This username is available.', 'advanced-username-manager')]);
+
+		}
 	}
 
 }
