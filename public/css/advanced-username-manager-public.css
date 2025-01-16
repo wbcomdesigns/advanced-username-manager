@@ -1,4 +1,78 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Variables
+# Shortcode
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+
+:root {
+    --aum-global-primary-color: #1b74e5;
+    --aum-global-secondary-color: #0c60cc;
+    --aum-content-background-color: #fff;
+    --aum-global-border-color: #eaeaea;
+    --aum-global-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --aum-global-box-shadow-hover: 0 3px 24px 0 rgba(18, 43, 70, .08);
+    --aum-global-border-radius: 8px;
+
+    --aum-success-color: #270;
+    --aum-success-bg-color: #DFF2BF;
+    --aum-error-color: #D8000C;
+    --aum-error-bg-color: #FFBABA;
+    --aum-warning-color: #9F6000;
+    --aum-warning-bg-color: #FEEFB3;
+}
+
+/*--------------------------------------------------------------
+# Shortcode
+--------------------------------------------------------------*/
+form.aum-standard-form {
+    background: var(--aum-content-background-color);
+    border: 1px solid var(--aum-global-border-color);
+    padding: 20px;
+    border-radius: var(--aum-global-border-radius);
+}
+
+form.aum-standard-form .aum-input-field {
+    margin: 0 0 20px;
+}
+
+form.aum-standard-form .aum-input-field:last-child {
+    margin: 0;
+}
+
+form.aum-standard-form .aum-input-field label {
+    margin: 0 0 5px;
+    display: block;
+}
+
+form.aum-standard-form .aum-input-field input[type=text] {
+    width: 100%;
+}
+
+form.aum-standard-form p.submit {
+    margin: 0;
+}
+
+.aum-success,
+.aum-error,
+.aum-warning {
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+
+.aum-success {
+    background-color: var(--aum-success-bg-color);
+    color: var(--aum-success-color);
+}
+
+.aum-error {
+    background-color: var(--aum-error-bg-color);
+    color: var(--aum-error-color);
+}
