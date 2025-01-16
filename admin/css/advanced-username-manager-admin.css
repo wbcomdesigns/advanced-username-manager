@@ -1,4 +1,14 @@
-/**
- * All of the CSS for your admin-specific functionality should be
- * included in this file.
- */
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Backend Options
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Backend Options
+--------------------------------------------------------------*/
+.wbcom-settings-section-wrap.wbcom-select-user-role-section {
+    overflow: visible;
+}

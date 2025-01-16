@@ -57,7 +57,7 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 							</div>
 						</div>		
 
-						<div class="wbcom-settings-section-wrap">
+						<div class="wbcom-settings-section-wrap wbcom-select-user-role-section">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Select User role(s)', 'woo-sell-services' ); ?></label>
 								<p class="description"><?php esc_html_e( 'Select user roles base allow to modify username change', 'woo-sell-services' ); ?></p>
