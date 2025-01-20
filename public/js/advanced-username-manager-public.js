@@ -37,6 +37,7 @@
 					nonce: aum_options.ajax_nonce,
 					new_user_name: $('#aum_new_user_name').val(),
 					current_user_name: $('#aum_current_user_name').val(),
+					bp_is_my_profile: $('#bp_is_my_profile').val(),
 				};
 			/**
 			 * Do AJAX
@@ -51,6 +52,12 @@
 					$('form.aum-standard-form p.aum-success').remove();
 					if( response.success == true ) {
 						$("form.aum-standard-form #aum_new_user_input_field").after('<p class="aum-success">' + response.data.success_message	 + '</p>');
+						if(  response.data.redirect_url !== '' ) {
+							var redirect_url = response.data.redirect_url;
+							setTimeout(function() {
+								window.location.href = redirect_url; // Replace with your desired URL
+							}, 5000); // 5000 milliseconds = 5 seconds
+						}
 						
 					} else {
 						$("form.aum-standard-form #aum_new_user_input_field").after('<p class="aum-error">' + response.data.error_message	 + '</p>');

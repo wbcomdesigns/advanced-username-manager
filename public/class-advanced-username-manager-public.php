@@ -128,8 +128,7 @@ class Advanced_Username_Manager_Public {
 		$current_user_roles	= $current_user->roles;
 		if( empty( array_intersect( $current_user_roles, $aum_general_settings['user_roles']) ) ) {
 			return esc_html__( 'you are not allow to change the username', 'advanced-username-manager' );
-		}
-		
+		}		
 		ob_start();
 		?>
 			<form name="advanced_username_change" method="post" class="aum-standard-form">
@@ -142,12 +141,13 @@ class Advanced_Username_Manager_Public {
 					<input type="text" name="new_user_name" id="aum_new_user_name" value="" class="settings-input"/>
 					<ul id="aum-autocomplete-suggestions"></ul>
 				</div>				
-
+				
 				<?php wp_nonce_field( 'advanced-username-change' ); ?>
 
 				<p class="submit">
 					<input type="submit" id="username_change_submit" name="username_change_submit" class="button" value="<?php esc_html_e( 'Save Changes', 'advanced-username-manager' ) ?>" disabled/>
 				</p>
+				<input type="hidden" id="bp_is_my_profile" name="bp_is_my_profile" value="<?php echo ( function_exists( 'bp_is_my_profile' ) ) ? bp_is_my_profile() : ''; ?>" />
 			</form>
 		<?php
 		return ob_get_clean();
@@ -177,6 +177,7 @@ class Advanced_Username_Manager_Public {
 		
 		$new_user_name		= sanitize_text_field( wp_unslash( $_POST['new_user_name'] ) );
 		$current_user_name	= sanitize_text_field( wp_unslash( $_POST['current_user_name'] ) );
+		$bp_is_my_profile	= sanitize_text_field( wp_unslash( $_POST['bp_is_my_profile'] ) );
 		if( $current_user_name == '' ) {
 			$current_user 		= wp_get_current_user();
 			$current_user_name 	= $current_user->user_login;
@@ -205,6 +206,17 @@ class Advanced_Username_Manager_Public {
 				'error_message'	=> esc_html__( 'Sorry, this username is already in use. Please try another one.', 'advanced-username-manager' ),
 			);
 			wp_send_json_error( $retval );
+		}
+		
+		// if it is multisite, before change the username, revoke the admin capability.
+		if ( is_multisite() && is_super_admin( $user_id ) ) {
+
+			if ( ! function_exists( 'revoke_super_admin' ) ) {
+				require_once( ABSPATH . 'wp-admin/includes/ms.php' );
+			}
+
+			$is_super_admin = true;
+			revoke_super_admin( $user_id );
 		}
 		
 		// wp_update_user() doesn't update user_login when updating a user... sucks!
@@ -237,22 +249,52 @@ class Advanced_Username_Manager_Public {
 		$this->advanced_username_manager_send_mail( $user_id, $new_user_name );
 		
 		/* Auto Login after change the username */
+		// delete object cache.
+		clean_user_cache( $user_id );
+		wp_cache_delete( $user_id, 'users' );
+		if( class_exists( 'buddypress' ) ) {
+			wp_cache_delete( 'bp_core_userdata_' . $user_id, 'bp' );
+			wp_cache_delete( 'bp_user_username_' . $user_id, 'bp' );
+			wp_cache_delete( 'bp_user_domain_' . $user_id, 'bp' );		
+		}
+		
+		
+		// Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
 		wp_clear_auth_cookie();
 		// Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
 		// If it's greater than this, then we know the user checked 'Remember Me' when they logged in.
 		$logged_in_cookie = wp_parse_auth_cookie( '', 'logged_in' );
 
 		/** This filter is documented in wp-includes/pluggable.php */
-		$default_cookie_life = apply_filters( 'aum_auth_cookie_expiration', ( 2 * DAY_IN_SECONDS ), $user_id, false );
+		$default_cookie_life = apply_filters( 'auth_cookie_expiration', ( 2 * DAY_IN_SECONDS ), $user_id, false );
 		$remember            = ( ( $logged_in_cookie['expiration'] - time() ) > $default_cookie_life );
 
 		wp_set_auth_cookie( $user_id, $remember );
+		
 		
 		// hook for plugins.
 		do_action( 'advanced_username_changed', $new_user_name, $user );
 		
 		$result['success_message'] = esc_html__( 'Username has beed changed Successfully!', 'advanced-username-manager' );
+		
+		$redirect_url = '';		
+		if ( function_exists( 'bp_is_my_profile' ) && $bp_is_my_profile ) {
+			if ( function_exists( 'bp_members_get_user_url' ) ) {
+				$bp = buddypress();
+				// Updating because of bp_members_get_user_slug function.
+				$bp->loggedin_user->userdata->user_nicename = $user->user_nicename;
+				$bp->loggedin_user->userdata->user_login    = $user->user_login;
 
+				$redirect_url = bp_members_get_user_url( $user->ID, array(
+					'single_item_component' => 'settings',
+					'single_item_action'    => 'username-change',
+				) );
+			} else {
+				$redirect_url = bp_core_get_user_domain( $user_id, $user->user_nicename, $user->user_login ) . $bp->settings->slug . '/username-change/';
+			}
+		}
+		$result['redirect_url'] = $redirect_url;
+		
 		wp_send_json_success( $result );
 	}
 	
@@ -362,5 +404,27 @@ The {$site_name} Team</p>";
 	
 	public function advanced_username_manager_print_form() {		
 		echo do_shortcode( '[username_manager]');
+	}
+	
+	public function advanced_username_manager_add_wss_endpoint() {
+		add_rewrite_endpoint( 'change-username', EP_PAGES );
+	}
+	
+	public function advanced_username_manager_woocommerce_account_menu_items( $items ) {		
+		$position = array_search('edit-account', array_keys($items)) + 1;		
+		$items = array_slice($items, 0, $position, true) 
+			+ array( 'change-username' => esc_html__( 'Change Username', 'advanced-username-manager' ) ) 
+			+ array_slice($items, $position, null, true);
+		
+		
+		return $items;
+	}
+	
+	public function advanced_username_manager_woocommece_print_form() {
+		
+		?>
+		<h3><?php esc_html_e( 'Change Username', 'advanced-username-manager' );?></h3>
+		<?php
+		$this->advanced_username_manager_print_form();
 	}
 }

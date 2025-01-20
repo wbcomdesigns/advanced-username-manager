@@ -187,6 +187,11 @@ class Advanced_Username_Manager {
 		$this->loader->add_action( 'wp_ajax_check_username_availability', $plugin_public, 'aum_check_username_availability' );
 
 		$this->loader->add_action( 'bp_setup_nav', $plugin_public, 'advanced_username_manager_bp_nav_setup', 15 );
+		
+		// Add service notification tab.
+		$this->loader->add_filter( 'init', $plugin_public, 'advanced_username_manager_add_wss_endpoint', 10 );
+		$this->loader->add_filter( 'woocommerce_account_menu_items', $plugin_public, 'advanced_username_manager_woocommerce_account_menu_items', 10 );
+		$this->loader->add_action( 'woocommerce_account_change-username_endpoint', $plugin_public, 'advanced_username_manager_woocommece_print_form' );
 
 	}
 
