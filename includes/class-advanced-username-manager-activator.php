@@ -30,7 +30,7 @@ class Advanced_Username_Manager_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-		global $wpdb;
+		global $wpdb, $wp_roles;
 		
 		$table_name 		= $wpdb->prefix . 'username_change_logs';
 		$charset_collate 	= $wpdb->get_charset_collate();
@@ -46,7 +46,24 @@ class Advanced_Username_Manager_Activator {
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 			dbDelta( $bpht_sql );
 		}
-
+		
+		
+		
+		$general_settings = get_option( 'advanced_username_manager_general_settings' );		
+		if( empty( $general_settings ) ) {
+			
+			$roles            = $wp_roles->get_names();
+			
+			$general_settings['enable_username'] 	= 'yes';
+			$general_settings['limit_days'] 		= '7';
+			$general_settings['user_roles'] 		= array_keys($roles);
+			$general_settings['min_username_length']= '5';
+			$general_settings['max_username_length']= '12';
+			$general_settings['allowed_characters'] = '';
+			$general_settings['prohibited_words'] 	= '';			
+			update_option('advanced_username_manager_general_settings', $general_settings);
+		}
+		
 	}
 
 }
