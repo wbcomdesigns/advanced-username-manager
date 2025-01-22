@@ -27,6 +27,7 @@ $user_roles 		= ( isset( $general_settings['user_roles'] ) ) ? $general_settings
 $limit_days 		= ( isset( $general_settings['limit_days'] ) ) ? $general_settings['limit_days'] : '7';
 $min_username_length	= ( isset( $general_settings['min_username_length'] ) ) ? $general_settings['min_username_length'] : '';
 $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $general_settings['max_username_length'] : '';
+$bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] ) ) ? $general_settings['bp_profile_slug_format'] : '';
 ?>
 <div class="wbcom-tab-content">
 	<div class="wbcom-welcome-main-wrapper">
@@ -57,8 +58,8 @@ $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $
 
 						<div class="wbcom-settings-section-wrap wbcom-select-user-role-section">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Select User role(s)', 'woo-sell-services' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Select user roles base allow to modify username change', 'woo-sell-services' ); ?></p>
+								<label><?php esc_html_e( 'Select User role(s)', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Select user roles base allow to modify username change', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<select class="aum-select" name="advanced_username_manager_general_settings[user_roles][]" multiple>
@@ -77,8 +78,8 @@ $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $
 						
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Limit Days', 'woo-sell-services' ); ?></label>
-								<p class="description"><?php esc_html_e( 'User can change the username base on selected period', 'woo-sell-services' ); ?></p>
+								<label><?php esc_html_e( 'Limit Days', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'User can change the username base on selected period', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<select name="advanced_username_manager_general_settings[limit_days]">
@@ -109,6 +110,21 @@ $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $
 								<input name="advanced_username_manager_general_settings[max_username_length]" type="text" class="regular-text" value="<?php echo esc_attr($max_username_length);?>" id="max_username_length">
 							</div>
 						</div>
+						
+						<?php if( class_exists( 'buddypress' ) ) : ?>
+							<div class="wbcom-settings-section-wrap">
+								<div class="wbcom-settings-section-options-heading">
+									<label><?php esc_html_e( 'User link format', 'advanced-username-manager' ); ?></label>
+									<p class="description"><?php esc_html_e( 'Select the format of your member’s profile links (i.e. /members/username). Both formats will open the member’s profile, so you can safely change without breaking previously shared links.', 'advanced-username-manager' ); ?></p>
+								</div>
+								<div class="wbcom-settings-section-options">
+									<select name="advanced_username_manager_general_settings[bp_profile_slug_format]">
+										<option value="username" <?php selected('username', $bp_profile_slug_format) ?>><?php esc_html_e( 'Username', 'advanced-username-manager' )?></option>
+										<option value="unique_identifier" <?php selected('unique_identifier', $bp_profile_slug_format) ?>><?php esc_html_e( 'Unique Identifier', 'advanced-username-manager' )?></option>
+									</select>
+								</div>
+							</div>
+						<?php endif;?>
 
 						<?php do_action( 'advanced_username_manager_add_general_setting_options' ); ?>
 					</div>

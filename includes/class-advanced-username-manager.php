@@ -120,7 +120,11 @@ class Advanced_Username_Manager {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-admin-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-paid-plugin-settings.php';
 
-
+		
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/advanced-username-unique-identifier.php';
+		
+		
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
