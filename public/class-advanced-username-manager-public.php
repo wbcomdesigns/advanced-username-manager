@@ -227,6 +227,7 @@ class Advanced_Username_Manager_Public {
 			'ID'            => $user_id,
 			'user_login'    => $new_user_name,
 			'user_nicename' => sanitize_title( $new_user_name ),
+			'display_name' => sanitize_title( $new_user_name ),
 		) );
 		
 		// manually update user_login.
