@@ -66,6 +66,9 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 								<select class="aum-select" name="advanced_username_manager_general_settings[user_roles][]" multiple>
 									<?php
 									foreach ( $roles as $role => $role_name ) {
+										if( $role == 'administrator' ) {
+											continue;
+										}
 										$selected = ( ! empty( $general_settings['user_roles'] ) && in_array( $role, $general_settings['user_roles'] ) ) ? 'selected' : '';
 										?>
 									<option value="<?php echo esc_attr( $role ); ?>" <?php echo esc_attr( $selected ); ?>><?php echo esc_html( $role_name ); ?></option>

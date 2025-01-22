@@ -126,6 +126,9 @@ class Advanced_Username_Manager_Public {
 		
 		$current_user 		= wp_get_current_user();
 		$current_user_roles	= $current_user->roles;
+		if( is_array($aum_general_settings['user_roles']) ) {
+			$aum_general_settings['user_roles'] = array_merge( $aum_general_settings['user_roles'], ['administrator']);
+		}
 		if( is_array($aum_general_settings['user_roles']) && empty( array_intersect( $current_user_roles, $aum_general_settings['user_roles']) ) ) {
 			return esc_html__( 'you are not allow to change the username', 'advanced-username-manager' );
 		}		
