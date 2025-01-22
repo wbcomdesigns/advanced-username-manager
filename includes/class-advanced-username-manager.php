@@ -119,8 +119,6 @@ class Advanced_Username_Manager {
 		/* Enqueue wbcom plugin folder file. */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-admin-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/wbcom/wbcom-paid-plugin-settings.php';
-
-		
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/advanced-username-unique-identifier.php';
 		
