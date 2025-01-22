@@ -116,6 +116,7 @@
 						},
 						success: function( response ) {
 							$('form.aum-standard-form p.aum-success').remove();
+							$('form.aum-standard-form p.aum-error').remove();
 							if( response.data.available	== false ) {
 								var suggestions = response.data.suggestions;							
 								var suggestionList = '';
@@ -124,7 +125,8 @@
 										suggestionList += '<li style="padding: 5px; cursor: pointer;">' + item + '</li>';
 									});
 									$('#aum-autocomplete-suggestions').html(suggestionList).show();
-								} 
+								}
+								$("form.aum-standard-form #aum_new_user_input_field").after('<p class="aum-error">' + response.data.message	 + '</p>');
 							} else if( response.data.available	== true ) {
 								$("form.aum-standard-form #aum_new_user_input_field").after('<p class="aum-success">' + response.data.message	 + '</p>');
 								$('#aum-autocomplete-suggestions').hide();
@@ -142,6 +144,7 @@
 		$(document).on('click', '#aum-autocomplete-suggestions li', function() {
 			$('#aum_new_user_name').val($(this).text());
 			$('#aum-autocomplete-suggestions').hide();
+			$('form.aum-standard-form p.aum-error').remove();
 		});
 	});
 

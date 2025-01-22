@@ -348,7 +348,7 @@ The {$site_name} Team</p>";
 			$suggestions[] = 'the' . ucfirst($username);
 			$suggestions[] = 'best' . ucfirst($username);
 			$suggestions[] = $username . rand(100, 999);			
-			wp_send_json_success(['available' => false, 'suggestions' => array_unique($suggestions)]);
+			wp_send_json_success(['available' => false, 'suggestions' => array_unique($suggestions), 'message' => esc_html__( 'Sorry, this username is already in use. you can select from following suggestion.', 'advanced-username-manager')]);
 		} else {
 
 			wp_send_json_success(['available' => true,'message'=> esc_html__( 'Great! This username is available.', 'advanced-username-manager')]);
