@@ -99,19 +99,15 @@ class Advanced_Username_Manager_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advanced-username-manager-public.js', array( 'jquery' ), $this->version, false );
 		
 		$min_username_length	= ( isset( $aum_general_settings['min_username_length'] ) && $aum_general_settings['min_username_length'] != ''  )? $aum_general_settings['min_username_length'] : 5;
-		$max_username_length	= ( isset( $aum_general_settings['max_username_length'] ) && $aum_general_settings['max_username_length'] != ''  )? $aum_general_settings['max_username_length'] : 12;
-		$allowed_characters		= ( isset( $aum_general_settings['allowed_characters'] ) && $aum_general_settings['allowed_characters'] != ''  )? $aum_general_settings['allowed_characters'] : '';
+		$max_username_length	= ( isset( $aum_general_settings['max_username_length'] ) && $aum_general_settings['max_username_length'] != ''  )? $aum_general_settings['max_username_length'] : 12;		
 		$js_object = array(
 			'ajaxurl'                           => admin_url( 'admin-ajax.php' ),
 			'ajax_nonce'                        => wp_create_nonce( 'advanced-username-change' ),			
 			'limit_days'				=> ( isset( $aum_general_settings['limit_days'] ) && $aum_general_settings['limit_days'] != ''  ) ? $aum_general_settings['limit_days'] : 7,
 			'min_username_length'				=> $min_username_length,
-			'max_username_length'				=> $max_username_length,
-			'allowed_characters'				=> $allowed_characters,
-			'prohibited_words'				=> ( isset( $aum_general_settings['prohibited_words'] ) && $aum_general_settings['prohibited_words'] != ''  )? $aum_general_settings['prohibited_words'] : '',
+			'max_username_length'				=> $max_username_length,						
 			'min_username_error'			=> sprintf(esc_html__('Username must be at least %s characters long.', 'advanced-username-change' ), esc_attr($min_username_length) ),
-			'max_username_error'			=> sprintf(esc_html__('Username must not exceed %s characters.', 'advanced-username-change' ), esc_attr($max_username_length)),
-			'allowed_characters_error'			=> sprintf(esc_html__('Username can only contain letters, numbers, and the characters %s.', 'advanced-username-change' ), esc_attr($allowed_characters)),
+			'max_username_error'			=> sprintf(esc_html__('Username must not exceed %s characters.', 'advanced-username-change' ), esc_attr($max_username_length)),			
 		);
 		wp_localize_script( $this->plugin_name, 'aum_options', $js_object );
 
@@ -190,7 +186,7 @@ class Advanced_Username_Manager_Public {
 		if ( empty( $new_user_name ) || ! validate_username( $new_user_name ) ) {
 			
 			$retval = array(				
-				'error_message'	=> esc_html__( 'Please enter a valid Username!', 'advanced-username-manager' ),
+				'error_message'	=> esc_html__( 'Sorry, this username is invalid because it uses illegal characters. Please enter a valid username.', 'advanced-username-manager' ),
 			);
 			wp_send_json_error( $retval );
 		} 
@@ -209,7 +205,7 @@ class Advanced_Username_Manager_Public {
 				'error_message'	=> esc_html__( 'Sorry, this username is already in use. Please try another one.', 'advanced-username-manager' ),
 			);
 			wp_send_json_error( $retval );
-		}
+		}		
 		
 		// if it is multisite, before change the username, revoke the admin capability.
 		if ( is_multisite() && is_super_admin( $user_id ) ) {

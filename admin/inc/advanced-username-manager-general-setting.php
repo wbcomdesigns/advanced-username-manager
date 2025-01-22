@@ -27,8 +27,6 @@ $user_roles 		= ( isset( $general_settings['user_roles'] ) ) ? $general_settings
 $limit_days 		= ( isset( $general_settings['limit_days'] ) ) ? $general_settings['limit_days'] : '7';
 $min_username_length	= ( isset( $general_settings['min_username_length'] ) ) ? $general_settings['min_username_length'] : '';
 $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $general_settings['max_username_length'] : '';
-$allowed_characters	= ( isset( $general_settings['allowed_characters'] ) ) ? $general_settings['allowed_characters'] : '';
-$prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $general_settings['prohibited_words'] : '';
 ?>
 <div class="wbcom-tab-content">
 	<div class="wbcom-welcome-main-wrapper">
@@ -111,30 +109,8 @@ $prohibited_words	= ( isset( $general_settings['prohibited_words'] ) ) ? $genera
 								<input name="advanced_username_manager_general_settings[max_username_length]" type="text" class="regular-text" value="<?php echo esc_attr($max_username_length);?>" id="max_username_length">
 							</div>
 						</div>
-						
-						<div class="wbcom-settings-section-wrap">
-							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Allowed characters.', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Only Allowed characters', 'advanced-username-manager' ); ?></p>
-							</div>
-							<div class="wbcom-settings-section-options">
-								<input name="advanced_username_manager_general_settings[allowed_characters]" type="text" class="regular-text" value="<?php echo esc_attr($allowed_characters);?>" id="allowed_characters">
-							</div>
-						</div>
-						
-						<div class="wbcom-settings-section-wrap">
-							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Prohibited words or patterns.', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Don\'t allowed prohibited words or patterns ', 'advanced-username-manager' ); ?></p>
-							</div>
-							<div class="wbcom-settings-section-options">
-								<input name="advanced_username_manager_general_settings[prohibited_words]" type="text" class="regular-text" value="<?php echo esc_attr($prohibited_words);?>" id="prohibited_words">
-							</div>
-						</div>
-						
-						
 
-						<?php do_action( 'bp_business_profile_add_general_setting_options' ); ?>
+						<?php do_action( 'advanced_username_manager_add_general_setting_options' ); ?>
 					</div>
 					<?php submit_button(); ?>
 				</form>

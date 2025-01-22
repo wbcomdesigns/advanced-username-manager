@@ -58,9 +58,7 @@ class Advanced_Username_Manager_Activator {
 			$general_settings['limit_days'] 		= '7';
 			$general_settings['user_roles'] 		= array_keys($roles);
 			$general_settings['min_username_length']= '5';
-			$general_settings['max_username_length']= '12';
-			$general_settings['allowed_characters'] = '';
-			$general_settings['prohibited_words'] 	= '';			
+			$general_settings['max_username_length']= '12';			
 			update_option('advanced_username_manager_general_settings', $general_settings);
 		}
 		

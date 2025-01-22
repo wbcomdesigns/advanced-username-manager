@@ -70,9 +70,7 @@
 			console.log( $(this).val() );
 			let username 			= $( this ).val();
 			let min_length 			= aum_options.min_username_length;
-			let max_length 			= aum_options.max_username_length;
-			let allowed_characters 	= aum_options.allowed_characters;
-			let allowedCharacters 	= new RegExp("^[a-zA-Z0-9" + allowed_characters + "]+$");
+			let max_length 			= aum_options.max_username_length;			
 			let message = "";
 			let isValid = true;
 			// Check minimum length
@@ -84,12 +82,6 @@
 			// Check maximum length
 			if (username.length > max_length) {
 				message += '<p class="aum-error">'+ aum_options.max_username_error+'</p>';
-				isValid = false;
-			}
-
-			// Check allowed characters
-			if (!allowedCharacters.test(username)) {
-				message += '<p class="aum-error">'+ aum_options.allowed_characters_error+'</p>';
 				isValid = false;
 			}
 			
