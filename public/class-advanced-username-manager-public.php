@@ -167,7 +167,7 @@ class Advanced_Username_Manager_Public {
 		// Get the results		
 		$results = $wpdb->get_var( $wpdb->prepare( $query, $limit_days_ago, $user_id ) );		
 		if( $results != '' ){
-			$next_date = date_i18n('Y-m-d H:i:s', strtotime( $results .' +'. $limit_days .' days' ) );
+			$next_date = date_i18n('Y-m-d', strtotime( $results .' +'. $limit_days .' days' ) );
 		 	$retval = array(			
 				'error_message'	=> sprintf(esc_html__( 'You already updated your username. You can update your username after %s', 'advanced-username-manager' ) , esc_html($next_date)),
 			);
