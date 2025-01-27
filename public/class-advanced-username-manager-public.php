@@ -117,7 +117,7 @@ class Advanced_Username_Manager_Public {
 		global $aum_general_settings;
 		
 		if( !is_user_logged_in() || ( isset($aum_general_settings['enable_username']) && $aum_general_settings['enable_username']!= 'yes' ) ) {
-			return '';
+			return esc_html__( 'To change your username, please log in first.', 'advanced-username-manager' );
 		}
 		
 		$current_user 		= wp_get_current_user();
