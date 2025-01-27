@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wbcom-tab-content">
 	<div class="wbcom-welcome-main-wrapper">
 		<div class="wbcom-welcome-head">
-			<p class="wbcom-welcome-description"><?php esc_html_e( 'Enable your BuddyPress community members to establish and handle their own business profiles similar to Facebook pages. Empower them to share their business listings, which will be public and include specific details, activities, and followers pertaining to their businesses.', 'advanced-username-manager' ); ?></p>
+			<p class="wbcom-welcome-description"><?php esc_html_e( 'Advanced Username Manager plugin allows users to change their username(the name with which they login). It is simple and useful if you want to give your users the freedom to change their username.', 'advanced-username-manager' ); ?></p>
 		</div><!-- .wbcom-welcome-head -->
 
 		<div class="wbcom-welcome-content">
