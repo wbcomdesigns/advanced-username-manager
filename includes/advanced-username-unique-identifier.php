@@ -99,7 +99,7 @@ function advanced_username_manager_get_user_slug( $slug, $user_id  ) {
 
 
 // Replace member slug from unique indetifire.
-add_filter( 'bp_core_set_uri_globals_member_slug', 'advanced_username_manager_set_uri_globals_member_slug' );
+add_filter( 'bp_core_set_uri_globals_member_slug', 'advanced_username_manager_set_uri_globals_member_slug', 20 );
 function advanced_username_manager_set_uri_globals_member_slug( $member_slug ) {
 	
 	global $aum_general_settings, $wpdb;	
