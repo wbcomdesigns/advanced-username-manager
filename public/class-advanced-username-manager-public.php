@@ -51,7 +51,7 @@ class Advanced_Username_Manager_Public {
 		global $aum_general_settings;
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;		
-		add_shortcode('username_manager', [$this, 'advanced_username_manager_func'] );
+		add_shortcode('username_manager', [$this, 'advanced_username_manager_change_username_func'] );
 	}
 
 	/**
@@ -120,7 +120,7 @@ class Advanced_Username_Manager_Public {
 	 * @since    1.0.0
 	 */
 	
-	public function advanced_username_manager_func( $atts, $content ) {
+	public function advanced_username_manager_change_username_func( $atts, $content ) {
 		global $aum_general_settings;
 		
 		if( !is_user_logged_in() || ( isset($aum_general_settings['enable_username']) && $aum_general_settings['enable_username']!= 'yes' ) ) {
