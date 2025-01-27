@@ -91,8 +91,8 @@ run_advanced_username_manager();
  * redirect to plugin settings page after activated
  */
 
-add_action( 'activated_plugin', 'bp_business_profile_activation_redirect_settings' );
-function bp_business_profile_activation_redirect_settings( $plugin ) {
+add_action( 'activated_plugin', 'advanced_username_manager_activation_redirect_settings' );
+function advanced_username_manager_activation_redirect_settings( $plugin ) {
 
 	if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'activate' && isset( $_REQUEST['plugin'] ) && $_REQUEST['plugin'] === $plugin ) { //phpcs:ignore
 		wp_redirect( admin_url( 'admin.php?page=advanced-username-manager&redirects=1' ) );
