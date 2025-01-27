@@ -63,7 +63,7 @@ form.aum-standard-form p.submit {
 .aum-warning {
     font-size: 14px;
     margin: 10px 0;
-    padding: 10px 20px;
+    padding: 10px 20px !important;
     border-radius: 3px;
 }
 
