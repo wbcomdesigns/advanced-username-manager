@@ -111,7 +111,7 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 							</div>
 						</div>
 						
-						<?php if( class_exists( 'buddypress' ) && !buddypress()->buddyboss ) : ?>
+						<?php if( class_exists( 'BuddyPress' ) && !buddypress()->buddyboss ) : ?>
 							<div class="wbcom-settings-section-wrap">
 								<div class="wbcom-settings-section-options-heading">
 									<label><?php esc_html_e( 'User link format', 'advanced-username-manager' ); ?></label>

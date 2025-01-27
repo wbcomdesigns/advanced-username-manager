@@ -252,7 +252,7 @@ class Advanced_Username_Manager_Public {
 		// delete object cache.
 		clean_user_cache( $user_id );
 		wp_cache_delete( $user_id, 'users' );
-		if( class_exists( 'buddypress' ) ) {
+		if( class_exists( 'BuddyPress' ) ) {
 			wp_cache_delete( 'bp_core_userdata_' . $user_id, 'bp' );
 			wp_cache_delete( 'bp_user_username_' . $user_id, 'bp' );
 			wp_cache_delete( 'bp_user_domain_' . $user_id, 'bp' );		

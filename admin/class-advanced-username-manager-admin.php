@@ -244,7 +244,7 @@ class Advanced_Username_Manager_Admin {
 			
 			$general_settings = $this->advanced_username_manager_sanitize_recursive( wp_unslash( $_POST['advanced_username_manager_general_settings'] ) );
 			
-			if( isset($general_settings['bp_profile_slug_format']) && $general_settings['bp_profile_slug_format'] == 'unique_identifier' && class_exists( 'buddypress' ) && !buddypress()->buddyboss ) {
+			if( isset($general_settings['bp_profile_slug_format']) && $general_settings['bp_profile_slug_format'] == 'unique_identifier' && class_exists( 'BuddyPress' ) && !buddypress()->buddyboss ) {
 				/* generate unique identifier */
 				advanced_username_manager_update_repair_member_slug();
 			} 
