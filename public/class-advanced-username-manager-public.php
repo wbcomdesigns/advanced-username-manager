@@ -113,6 +113,13 @@ class Advanced_Username_Manager_Public {
 
 	}
 	
+	
+	/**
+	 * Call the "username_manager" shortcode callback function
+	 *
+	 * @since    1.0.0
+	 */
+	
 	public function advanced_username_manager_func( $atts, $content ) {
 		global $aum_general_settings;
 		
@@ -152,6 +159,11 @@ class Advanced_Username_Manager_Public {
 		return ob_get_clean();
 	}
 	
+	/**
+	 * update username using ajax
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_update_username() {
 		
 		check_ajax_referer( 'advanced-username-change', 'nonce' );
@@ -298,6 +310,12 @@ class Advanced_Username_Manager_Public {
 		wp_send_json_success( $result );
 	}
 	
+	
+	/**
+	 * send the email to the user about the  change the username
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_send_mail( $user_id, $new_user_name ) {
 		$user 			= get_userdata( $user_id );
 		$site_name     	= get_bloginfo( 'name' );
@@ -321,6 +339,11 @@ The {$site_name} Team</p>";
 		wp_mail( $user_email, $email_subject, $email_content, $headers );		
 	}
 	
+	/**
+	 * Check the user name availability
+	 *
+	 * @since    1.0.0
+	 */
 	public function aum_check_username_availability() {
 		// Check nonce for security
 
@@ -356,6 +379,11 @@ The {$site_name} Team</p>";
 		}
 	}
 	
+	/**
+	 * set up member subnav for change the username in buddypress
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_bp_nav_setup() {
 		
 		$settings_link = bp_displayed_user_domain() . bp_get_settings_slug() . '/';
@@ -402,14 +430,29 @@ The {$site_name} Team</p>";
 		 esc_html_e( 'Change Username', 'bp-username-changer' );
 	}
 	
+	/**
+	 * call the shortcode
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_print_form() {		
 		echo do_shortcode( '[username_manager]');
 	}
 	
+	/**
+	 * rewrite endpoint
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_add_wss_endpoint() {
 		add_rewrite_endpoint( 'change-username', EP_PAGES );
 	}
 	
+	/**
+	 * add change username in WooCommece account menu item
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_woocommerce_account_menu_items( $items ) {		
 		$position = array_search('edit-account', array_keys($items)) + 1;		
 		$items = array_slice($items, 0, $position, true) 
@@ -420,6 +463,11 @@ The {$site_name} Team</p>";
 		return $items;
 	}
 	
+	/**
+	 * call the shortcode
+	 *
+	 * @since    1.0.0
+	 */
 	public function advanced_username_manager_woocommece_print_form() {
 		
 		?>
