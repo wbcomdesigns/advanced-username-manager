@@ -11,7 +11,7 @@
 			<div id="wb_admin_plugin_name">
 				<?php esc_html_e( 'Advanced Username Manager', 'advanced-username-manager' ); ?>
 				<?php /* translators: %s: */ ?>
-				<span><?php printf( esc_html__( 'Version %s', 'advanced-username-manager' ), esc_attr( BP_BUSINESS_PROFILE_VERSION ) ); ?></span>
+				<span><?php printf( esc_html__( 'Version %s', 'advanced-username-manager' ), esc_attr( ADVANCED_USERNAME_MANAGER_VERSION ) ); ?></span>
 			</div>
 			<?php echo do_shortcode( '[wbcom_admin_setting_header]' ); ?>
 		</div>
