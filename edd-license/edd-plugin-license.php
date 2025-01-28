@@ -26,7 +26,7 @@ function advanced_username_manager_plugin_updater() {
 	// setup the updater
 	$edd_updater = new ADVANCED_USERNAME_MANAGER_PLUGIN_UPDATER(
 		ADVANCED_USERNAME_MANAGER_STORE_URL,
-		BP_BUSINESS_PROFILE_FILE,
+		ADVANCED_USERNAME_MANAGER_FILE,
 		array(
 			'version'   => ADVANCED_USERNAME_MANAGER_VERSION,             // current version number.
 			'license'   => $license_key,        // license key (used get_option above to retrieve from DB).
