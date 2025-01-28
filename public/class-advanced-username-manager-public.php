@@ -72,9 +72,15 @@ class Advanced_Username_Manager_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			$extension = '.css';
+			$path      = is_rtl() ? '/rtl' : '';
+		} else {
+			$extension = '.min.css';
+			$path      = is_rtl() ? '/rtl' : '/min';
+		}
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advanced-username-manager-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css' . $path . '/advanced-username-manager-public' . $extension, array(), $this->version, 'all' );
 	}
 
 	/**
@@ -96,8 +102,17 @@ class Advanced_Username_Manager_Public {
 		 * class.
 		 */
 		global $aum_general_settings;
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advanced-username-manager-public.js', array( 'jquery' ), $this->version, false );
-		
+
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			$extension = '.js';
+			$path      = '';
+		} else {
+			$extension = '.min.js';
+			$path      = '/min';
+		}
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js' . $path . '/advanced-username-manager-public' . $extension, array( 'jquery' ), $this->version, false );
+
 		$min_username_length	= ( isset( $aum_general_settings['min_username_length'] ) && $aum_general_settings['min_username_length'] != ''  )? $aum_general_settings['min_username_length'] : 5;
 		$max_username_length	= ( isset( $aum_general_settings['max_username_length'] ) && $aum_general_settings['max_username_length'] != ''  )? $aum_general_settings['max_username_length'] : 12;		
 		$js_object = array(
