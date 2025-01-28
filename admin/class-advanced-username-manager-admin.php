@@ -149,20 +149,12 @@ class Advanced_Username_Manager_Admin {
 		if ( $current === 'shortcode-generator' ) {
 			$current = 'my-shortcodes';
 		}
-		
-		$business_taxonomies = get_object_taxonomies( 'business' );
-			if (($key = array_search('business-category', $business_taxonomies)) !== false) {
-				unset($business_taxonomies[$key]);
-			}
 
-		$bp_business_profile_tabs = array(
+		$advanced_username_manager_tabs = array(
 			'welcome'         => esc_html__( 'Welcome', 'advanced-username-manager' ),
 			'general-setting' => esc_html__( 'General Settings', 'advanced-username-manager' ),			
-		);
+		);		
 		
-		if ( !empty( $business_taxonomies ) ) {
-			$bp_business_profile_tabs['taxonomy-filter'] = esc_html__( 'Custom Taxonomy Filter', 'advanced-username-manager' );
-		}
 		?>
 
 		<div class="wrap">
@@ -195,11 +187,11 @@ class Advanced_Username_Manager_Admin {
 							</div>
 							<ul>
 							<?php
-							foreach ( $bp_business_profile_tabs as $bp_business_profile_tab => $bp_business_profile_name ) :
-								$class = ( $bp_business_profile_tab === $current ) ? 'nav-tab-active' : '';
+							foreach ( $advanced_username_manager_tabs as $advanced_username_manager_tab => $advanced_username_manager_name ) :
+								$class = ( $advanced_username_manager_tab === $current ) ? 'nav-tab-active' : '';
 								?>
-								<li class="<?php echo esc_attr( $bp_business_profile_tab ); ?>">
-									<a class="nav-tab <?php echo esc_attr( $class ); ?>" href="admin.php?page=advanced-username-manager&tab=<?php echo esc_attr( $bp_business_profile_tab ); ?>"><?php echo esc_html( $bp_business_profile_name ); ?></a>
+								<li class="<?php echo esc_attr( $advanced_username_manager_tab ); ?>">
+									<a class="nav-tab <?php echo esc_attr( $class ); ?>" href="admin.php?page=advanced-username-manager&tab=<?php echo esc_attr( $advanced_username_manager_tab ); ?>"><?php echo esc_html( $advanced_username_manager_name ); ?></a>
 								</li>
 							<?php endforeach; ?>
 							</ul>
