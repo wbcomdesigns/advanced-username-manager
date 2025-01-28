@@ -35,7 +35,8 @@ class Advanced_Username_Manager_Activator {
 		$table_name 		= $wpdb->prefix . 'username_change_logs';
 		$charset_collate 	= $wpdb->get_charset_collate();
 		
-		if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) != $table_name ) {
+		$sql = $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name );
+		if ( $wpdb->get_var( $sql ) != $table_name ) {
 			$bpht_sql = "CREATE TABLE $table_name (
 				id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 				user_id  bigint(20),				
