@@ -38,6 +38,7 @@
 				new_user_name: $('#aum_new_user_name').val(),
 				current_user_name: $('#aum_current_user_name').val(),
 				bp_is_my_profile: $('#bp_is_my_profile').val(),
+				aum_user_id: $('#aum_user_id').val(),
 			};
 			/**
 			 * Do AJAX

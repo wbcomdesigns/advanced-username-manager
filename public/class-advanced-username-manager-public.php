@@ -146,7 +146,12 @@ class Advanced_Username_Manager_Public {
 			<?php
 		}
 		
-		$current_user 		= wp_get_current_user();
+		if (  function_exists( 'bp_is_user') && bp_is_user() ) {
+			$current_user 		= get_userdata(bp_displayed_user_id());
+		} else {
+			$current_user 		= wp_get_current_user();
+		}
+		
 		$current_user_roles	= $current_user->roles;
 		if( is_array($aum_general_settings['user_roles']) ) {
 			$aum_general_settings['user_roles'] = array_merge( $aum_general_settings['user_roles'], ['administrator']);
@@ -170,9 +175,10 @@ class Advanced_Username_Manager_Public {
 				<?php wp_nonce_field( 'advanced-username-change' ); ?>
 
 				<p class="submit">
+					<input type="hidden" id="aum_user_id" name="user_id" value="<?php echo esc_attr($current_user->ID); ?>" />
 					<input type="submit" id="username_change_submit" name="username_change_submit" class="button" value="<?php esc_html_e( 'Save Changes', 'advanced-username-manager' ) ?>" disabled/>
 				</p>
-				<input type="hidden" id="bp_is_my_profile" name="bp_is_my_profile" value="<?php echo ( function_exists( 'bp_is_my_profile' ) ) ? bp_is_my_profile() : ''; ?>" />
+				<input type="hidden" id="bp_is_my_profile" name="bp_is_my_profile" value="<?php echo ( function_exists( 'bp_is_user' ) ) ? bp_is_user() : ''; ?>" />
 			</form>
 		<?php
 		return ob_get_clean();
@@ -188,8 +194,9 @@ class Advanced_Username_Manager_Public {
 		check_ajax_referer( 'advanced-username-change', 'nonce' );
 		
 		global $wpdb, $aum_general_settings;
-		$table_name 	= $wpdb->prefix . 'username_change_logs';
-		$user_id		= get_current_user_id();
+		$table_name 	= $wpdb->prefix . 'username_change_logs';	
+		$loggedin_user_id		= get_current_user_id();		
+		$user_id		= sanitize_text_field( wp_unslash( $_POST['aum_user_id'] ) );
 		$limit_days		= ( isset( $aum_general_settings['limit_days'] ) && $aum_general_settings['limit_days'] != ''  )? $aum_general_settings['limit_days'] : '7';
 		$limit_days_ago = date( 'Y-m-d', strtotime( '-'. $limit_days .' days' ) );
 		
@@ -290,17 +297,21 @@ class Advanced_Username_Manager_Public {
 		}
 		
 		
-		// Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
-		wp_clear_auth_cookie();
-		// Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
-		// If it's greater than this, then we know the user checked 'Remember Me' when they logged in.
-		$logged_in_cookie = wp_parse_auth_cookie( '', 'logged_in' );
+		
+		if( (int)$loggedin_user_id === (int)$user_id) {
+			// Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
+			wp_clear_auth_cookie();
+			
+			// Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
+			// If it's greater than this, then we know the user checked 'Remember Me' when they logged in.
+			$logged_in_cookie = wp_parse_auth_cookie( '', 'logged_in' );
 
-		/** This filter is documented in wp-includes/pluggable.php */
-		$default_cookie_life = apply_filters( 'auth_cookie_expiration', ( 2 * DAY_IN_SECONDS ), $user_id, false );
-		$remember            = ( ( $logged_in_cookie['expiration'] - time() ) > $default_cookie_life );
+			/** This filter is documented in wp-includes/pluggable.php */
+			$default_cookie_life = apply_filters( 'auth_cookie_expiration', ( 2 * DAY_IN_SECONDS ), $user_id, false );
+			$remember            = ( ( $logged_in_cookie['expiration'] - time() ) > $default_cookie_life );
 
-		wp_set_auth_cookie( $user_id, $remember );
+			wp_set_auth_cookie( $user_id, $remember );
+		}
 		
 		
 		// hook for plugins.
