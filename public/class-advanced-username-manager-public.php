@@ -136,7 +136,15 @@ class Advanced_Username_Manager_Public {
 	 */
 	
 	public function advanced_username_manager_change_username_func( $atts, $content ) {
-		global $aum_general_settings;
+		global $aum_general_settings;		
+		
+		if( !isset($aum_general_settings['enable_username']) ) {
+			?>
+			<div class="aum-error">
+				<?php return esc_html__( 'Username changes are temporarily disabled. Please try again later or contact support for assistance.', 'advanced-username-manager' ); ?>
+			</div>
+			<?php
+		}
 		
 		if( !is_user_logged_in() || ( isset($aum_general_settings['enable_username']) && $aum_general_settings['enable_username']!= 'yes' ) ) {
 			?>
