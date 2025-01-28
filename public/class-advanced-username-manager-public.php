@@ -186,7 +186,7 @@ class Advanced_Username_Manager_Public {
 					<input type="hidden" id="aum_user_id" name="user_id" value="<?php echo esc_attr($current_user->ID); ?>" />
 					<input type="submit" id="username_change_submit" name="username_change_submit" class="button" value="<?php esc_html_e( 'Save Changes', 'advanced-username-manager' ) ?>" disabled/>
 				</p>
-				<input type="hidden" id="bp_is_my_profile" name="bp_is_my_profile" value="<?php echo ( function_exists( 'bp_is_user' ) ) ? bp_is_user() : ''; ?>" />
+				<input type="hidden" id="bp_is_my_profile" name="bp_is_my_profile" value="<?php echo esc_attr( ( function_exists( 'bp_is_user' ) ) ? bp_is_user() : '' ); ?>" />
 			</form>
 		<?php
 		return ob_get_clean();
@@ -206,11 +206,13 @@ class Advanced_Username_Manager_Public {
 		$loggedin_user_id		= get_current_user_id();		
 		$user_id		= sanitize_text_field( wp_unslash( $_POST['aum_user_id'] ) );
 		$limit_days		= ( isset( $aum_general_settings['limit_days'] ) && $aum_general_settings['limit_days'] != ''  )? $aum_general_settings['limit_days'] : '7';
-		$limit_days_ago = date( 'Y-m-d', strtotime( '-'. $limit_days .' days' ) );
+		$limit_days_ago = date( 'Y-m-d', strtotime( '-'. $limit_days .' days' ) );		
 		
-		$query = "SELECT created_date FROM {$table_name} WHERE created_date >= %s and user_id=%d order by id DESC LIMIT 1";
 		// Get the results		
-		$results = $wpdb->get_var( $wpdb->prepare( $query, $limit_days_ago, $user_id ) );		
+		$results = $wpdb->get_var( $wpdb->prepare( "SELECT created_date FROM {$table_name} WHERE created_date >= %s and user_id=%d order by id DESC LIMIT 1", 
+									$limit_days_ago, 
+									$user_id ) 
+								);		
 		if( $results != '' ){
 			$next_date = date_i18n('Y-m-d', strtotime( $results .' +'. $limit_days .' days' ) );
 		 	$retval = array(			
@@ -220,9 +222,9 @@ class Advanced_Username_Manager_Public {
 		}
 		
 		
-		$new_user_name		= sanitize_text_field( wp_unslash( $_POST['new_user_name'] ) );
-		$current_user_name	= sanitize_text_field( wp_unslash( $_POST['current_user_name'] ) );
-		$bp_is_my_profile	= sanitize_text_field( wp_unslash( $_POST['bp_is_my_profile'] ) );
+		$new_user_name		= ( isset($_POST['new_user_name']) && !empty($_POST['new_user_name'])) ? sanitize_text_field( wp_unslash( $_POST['new_user_name'] ) ) : '';
+		$current_user_name	= ( isset($_POST['current_user_name']) && !empty($_POST['current_user_name'])) ? sanitize_text_field( wp_unslash( $_POST['current_user_name'] ) ) : '';
+		$bp_is_my_profile	= ( isset($_POST['bp_is_my_profile']) && !empty($_POST['bp_is_my_profile'])) ? sanitize_text_field( wp_unslash( $_POST['bp_is_my_profile'] ) ) : '';
 		if( $current_user_name == '' ) {
 			$current_user 		= wp_get_current_user();
 			$current_user_name 	= $current_user->user_login;
@@ -387,7 +389,7 @@ The {$site_name} Team</p>";
 
 		check_ajax_referer( 'advanced-username-change', 'nonce' );
 
-		$username = sanitize_text_field($_POST['username']);
+		$username = ( isset($_POST['username']) && !empty($_POST['username']) ) ? sanitize_text_field($_POST['username']) : '';
 
 		if (strlen($username) < 3) {
 
