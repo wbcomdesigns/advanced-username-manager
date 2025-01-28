@@ -177,10 +177,17 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 				wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' );
 			}
 			if ( ! wp_script_is( 'wbcom_admin_setting_js', 'enqueued' ) ) {
+				if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+					$extension = '.js';
+					$path      = '';
+				} else {
+					$extension = '.min.js';
+					$path      = '/min';
+				}
 
 				wp_register_script(
 					'wbcom_admin_setting_js',
-					ADVANCED_USERNAME_MANAGER_URL . 'admin/wbcom/assets/js/wbcom-admin-setting.js',
+					ADVANCED_USERNAME_MANAGER_URL . 'admin/wbcom/assets/js' . $path . '/wbcom-admin-setting' . $extension,
 					array( 'jquery' ),
 					time(),
 					false
@@ -200,7 +207,15 @@ if ( ! class_exists( 'Wbcom_Admin_Settings' ) ) {
 			}
 
 			if ( ! wp_style_is( 'wbcom-admin-setting-css', 'enqueued' ) ) {
-				wp_enqueue_style( 'wbcom-admin-setting-css', ADVANCED_USERNAME_MANAGER_URL . 'admin/wbcom/assets/css/wbcom-admin-setting.css' );
+				if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+					$extension = '.css';
+					$path      = is_rtl() ? '/rtl' : '';
+				} else {
+					$extension = '.min.css';
+					$path      = is_rtl() ? '/rtl' : '/min';
+				}
+
+				wp_enqueue_style( 'wbcom-admin-setting-css', ADVANCED_USERNAME_MANAGER_URL . 'admin/wbcom/assets/css' . $path . '/wbcom-admin-setting' . $extension );
 			}
 		}
 

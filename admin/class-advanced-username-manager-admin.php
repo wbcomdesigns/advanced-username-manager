@@ -72,21 +72,19 @@ class Advanced_Username_Manager_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		 
 		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
-			$min 	= '';
-			$path   = is_rtl() ? 'rtl/' : '';
+			$extension = '.css';
+			$path      = is_rtl() ? '/rtl' : '';
 		} else {
-			$min	= '.min';
-			$path   = is_rtl() ? 'rtl/' : 'min/';
+			$extension = '.min.css';
+			$path      = is_rtl() ? '/rtl' : '/min';
 		}
-		
-		if ( ! wp_style_is( 'selectize-css', 'enqueued' ) ) {
-			wp_enqueue_style( 'selectize-css', plugin_dir_url( __FILE__ ) . 'css/selectize.min.css', array(), $this->version, 'all' );
-		}
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . "css/{$path}advanced-username-manager-admin{$min}.css"
-		, array(), $this->version, 'all' );
 
+		if ( ! wp_style_is( 'selectize-css', 'enqueued' ) ) {
+			wp_enqueue_style( 'selectize-css', plugin_dir_url( __FILE__ ) . 'css/vendor/selectize.min.css', array(), $this->version, 'all' );
+		}
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css' . $path . '/advanced-username-manager-admin' . $extension, array(), $this->version, 'all' );
 	}
 
 	/**
@@ -107,23 +105,22 @@ class Advanced_Username_Manager_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		
 		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
-			$min 	= '';
-			$path   = is_rtl() ? 'rtl/' : '';
+			$extension = '.js';
+			$path      = '';
 		} else {
-			$min	= '.min';
-			$path   = is_rtl() ? 'rtl/' : 'min/';
+			$extension = '.min.js';
+			$path      = '/min';
 		}
-		
-		
+
 		if ( ! wp_script_is( 'selectize-js', 'enqueued' ) ) {
-			wp_enqueue_script( 'selectize-js', plugin_dir_url( __FILE__ ) . 'js/selectize.min.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'selectize-js', plugin_dir_url( __FILE__ ) . 'js/vendor/selectize.min.js', array( 'jquery' ), $this->version, false );
 		}
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . "js/{$path}advanced-username-manager-admin{$min}.js", array( 'jquery' ), $this->version, false );
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js' . $path . '/advanced-username-manager-admin' . $extension, array( 'jquery' ), $this->version, false );
 
 	}
-	
+
 	/**
 	 * Register admin menu for plugin.
 	 *

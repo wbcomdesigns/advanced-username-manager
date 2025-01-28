@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://https://https://wbcomdesigns.com/
+ * @link              https://wbcomdesigns.com/
  * @since             1.0.0
  * @package           Advanced_Username_Manager
  *
  * @wordpress-plugin
  * Plugin Name:       Advanced Username Manager
- * Plugin URI:        https://https://https://wbcomdesigns.com/downloads/advanced-username-manager
+ * Plugin URI:        https://wbcomdesigns.com/downloads/advanced-username-manager
  * Description:       This is a description of the plugin.
  * Version:           1.0.0
  * Author:            Wbcom Designs
- * Author URI:        https://https://https://wbcomdesigns.com//
+ * Author URI:        https://wbcomdesigns.com//
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       advanced-username-manager
