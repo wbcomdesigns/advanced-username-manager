@@ -29,7 +29,12 @@ function advanced_username_manager_set_bulk_user_profile_slug( $user_ids ) {
 	
 	foreach ( $user_ids as $key => $user_id ) {
 		// removed old user meta which have value length 40.
-		$wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'aum_profile_slug' AND user_id = {$user_id} AND LENGTH(meta_value) = 40" );
+		$wpdb->query( $wpdb->prepare(
+					"DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE %s AND user_id = %d AND LENGTH(meta_value) = %d",
+					'aum_profile_slug',
+					$user_id,
+					40
+				) );
 
 		// fetch user slug if already exists.
 		$user_slug = advanced_username_manager_core_get_user_slug( $user_id );
