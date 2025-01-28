@@ -93,8 +93,8 @@ run_advanced_username_manager();
 
 add_action( 'activated_plugin', 'advanced_username_manager_activation_redirect_settings' );
 function advanced_username_manager_activation_redirect_settings( $plugin ) {
-
-	if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'activate' && isset( $_REQUEST['plugin'] ) && $_REQUEST['plugin'] === $plugin ) { //phpcs:ignore
+		
+	if ( $plugin === plugin_basename( __FILE__ ) && isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'activate' && isset( $_REQUEST['plugin'] ) && $_REQUEST['plugin'] === plugin_basename( __FILE__ ) ) { //phpcs:ignore		
 		wp_redirect( admin_url( 'admin.php?page=advanced-username-manager&redirects=1' ) );
 		exit;
 	}
