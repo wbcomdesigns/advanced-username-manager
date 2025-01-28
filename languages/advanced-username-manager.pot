@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-28T06:02:49+00:00\n"
+"POT-Creation-Date: 2025-01-28T11:51:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: advanced-username-manager\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: advanced-username-manager.php
 #: admin/class-advanced-username-manager-admin.php:137
-#: admin/class-advanced-username-manager-admin.php:181
+#: admin/class-advanced-username-manager-admin.php:173
 #: admin/wbcom/templates/wbcom-license-page.php:12
 msgid "Advanced Username Manager"
 msgstr ""
@@ -50,21 +50,17 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: admin/class-advanced-username-manager-admin.php:159
+#: admin/class-advanced-username-manager-admin.php:154
 msgid "Welcome"
 msgstr ""
 
-#: admin/class-advanced-username-manager-admin.php:160
+#: admin/class-advanced-username-manager-admin.php:155
 #: admin/inc/advanced-username-manager-general-setting.php:35
 msgid "General Settings"
 msgstr ""
 
-#: admin/class-advanced-username-manager-admin.php:164
-msgid "Custom Taxonomy Filter"
-msgstr ""
-
 #. translators: %s:
-#: admin/class-advanced-username-manager-admin.php:183
+#: admin/class-advanced-username-manager-admin.php:175
 #: admin/wbcom/templates/wbcom-license-page.php:14
 msgid "Version %s"
 msgstr ""
@@ -191,26 +187,31 @@ msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:25
 #: admin/wbcom/templates/wbcom-license-page.php:37
+#: edd-license/edd-plugin-license.php:387
 msgid "Product"
 msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:26
 #: admin/wbcom/templates/wbcom-license-page.php:38
+#: edd-license/edd-plugin-license.php:388
 msgid "Version"
 msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:27
 #: admin/wbcom/templates/wbcom-license-page.php:39
+#: edd-license/edd-plugin-license.php:389
 msgid "Key"
 msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:28
 #: admin/wbcom/templates/wbcom-license-page.php:40
+#: edd-license/edd-plugin-license.php:390
 msgid "Status"
 msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:29
 #: admin/wbcom/templates/wbcom-license-page.php:41
+#: edd-license/edd-plugin-license.php:391
 msgid "Action"
 msgstr ""
 
@@ -725,6 +726,97 @@ msgstr ""
 msgid "License"
 msgstr ""
 
+#: edd-license/edd-plugin-license.php:102
+#: edd-license/edd-plugin-license.php:139
+#: edd-license/edd-plugin-license.php:218
+#: edd-license/edd-plugin-license.php:469
+msgid "An error occurred, please try again."
+msgstr ""
+
+#. translators: %s is the license expiration date
+#: edd-license/edd-plugin-license.php:111
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:117
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:121
+msgid "Invalid license."
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:126
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#. translators: %s is the plugin mame
+#: edd-license/edd-plugin-license.php:131
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:135
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#. translators: %1$s: Expire Time
+#: edd-license/edd-plugin-license.php:320
+msgid "Your  Wbcom Designs - BuddyPress Business Profile plugin license key expired on %s."
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:350
+msgid "Please activate your  Wbcom Designs - BuddyPress Business Profile plugin license key."
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:412
+msgid "Deactivate License"
+msgstr ""
+
+#: edd-license/edd-plugin-license.php:417
+msgid "Activate License"
+msgstr ""
+
+#. translators: %s is the license expiration date
+#: edd-license/edd-plugin-license.php:488
+msgid " Expires %s."
+msgstr ""
+
+#. translators: 1: activated sites count, 2: total site license limit
+#: edd-license/edd-plugin-license.php:492
+msgid "You have %1$s/%2$s-sites activated."
+msgstr ""
+
+#. translators: the plugin name.
+#: edd-license/edd_plugin_updater.php:256
+msgid "There is a new version of %1$s available."
+msgstr ""
+
+#: edd-license/edd_plugin_updater.php:262
+msgid "Contact your network administrator to install the update."
+msgstr ""
+
+#. translators: 1. opening anchor tag, do not translate 2. the new plugin version 3. closing anchor tag, do not translate.
+#: edd-license/edd_plugin_updater.php:267
+msgid "%1$sView version %2$s details%3$s."
+msgstr ""
+
+#. translators: 1: Opening anchor tag for "View version details" link 2: Plugin version number 3: Closing anchor tag for "View version details" link 4: Opening anchor tag for "update now" link 5: Closing anchor tag for "update now" link
+#: edd-license/edd_plugin_updater.php:282
+msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
+msgstr ""
+
+#: edd-license/edd_plugin_updater.php:293
+msgid "Update now."
+msgstr ""
+
+#: edd-license/edd_plugin_updater.php:525
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: edd-license/edd_plugin_updater.php:525
+msgid "Error"
+msgstr ""
+
 #: public/class-advanced-username-manager-public.php:124
 msgid "Username must be at least %s characters long."
 msgstr ""
@@ -733,68 +825,72 @@ msgstr ""
 msgid "Username must not exceed %s characters."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:144
-msgid "To change your username, please log in first."
+#: public/class-advanced-username-manager-public.php:146
+msgid "Username changes are temporarily disabled. Please try again later or contact support for assistance."
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:155
-msgid "you are not allow to change the username"
+msgid "To change your username, please log in first."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:161
+#: public/class-advanced-username-manager-public.php:174
+msgid "You are not allowed to change the username. Please contact the administrator for assistance."
+msgstr ""
+
+#: public/class-advanced-username-manager-public.php:184
 msgid "Current Username"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:165
+#: public/class-advanced-username-manager-public.php:188
 msgid "New Username"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:173
+#: public/class-advanced-username-manager-public.php:197
 msgid "Save Changes"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:202
+#: public/class-advanced-username-manager-public.php:229
 msgid "You already updated your username. You can update your username after %s"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:220
+#: public/class-advanced-username-manager-public.php:247
 msgid "Sorry, this username is invalid because it uses illegal characters. Please enter a valid username."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:228
+#: public/class-advanced-username-manager-public.php:255
 msgid "Please enter a different Username!"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:236
+#: public/class-advanced-username-manager-public.php:263
 msgid "Sorry, this username is already in use. Please try another one."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:309
+#: public/class-advanced-username-manager-public.php:340
 msgid "Username has beed changed Successfully!"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:342
+#: public/class-advanced-username-manager-public.php:373
 msgid "%s Your Username Has Been Successfully Updated"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:375
+#: public/class-advanced-username-manager-public.php:406
 msgid "Username must be at least 3 characters long."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:393
+#: public/class-advanced-username-manager-public.php:424
 msgid "Sorry, this username is already in use. you can select from following suggestion."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:396
+#: public/class-advanced-username-manager-public.php:427
 msgid "Great! This username is available."
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:411
+#: public/class-advanced-username-manager-public.php:447
 msgid "Username Change"
 msgstr ""
 
-#: public/class-advanced-username-manager-public.php:449
-#: public/class-advanced-username-manager-public.php:478
-#: public/class-advanced-username-manager-public.php:493
+#: public/class-advanced-username-manager-public.php:485
+#: public/class-advanced-username-manager-public.php:514
+#: public/class-advanced-username-manager-public.php:529
 msgid "Change Username"
 msgstr ""

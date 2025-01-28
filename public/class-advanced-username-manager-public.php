@@ -169,16 +169,14 @@ class Advanced_Username_Manager_Public {
 			$aum_general_settings['user_roles'] = array_merge( $aum_general_settings['user_roles'], ['administrator']);
 		}
 		if( is_array($aum_general_settings['user_roles']) && empty( array_intersect( $current_user_roles, $aum_general_settings['user_roles']) ) ) {
-			?> 
-			return esc_html__( 'You are not allowed to change the username. Please contact the administrator for assistance.', 'advanced-username-manager' );
-			
+			?>
 			<div class="aum-error">
-				<?php echo esc_html__( 'To change your username, please log in first.', 'advanced-username-manager' ); ?>
+				<?php echo esc_html__( 'You are not allowed to change the username. Please contact the administrator for assistance.', 'advanced-username-manager' ); ?>
 			</div>
 			<?php
 			return ob_get_clean();
 			
-		}		
+		}
 		
 		?>
 			<form name="advanced_username_change" method="post" class="aum-standard-form">
