@@ -416,6 +416,11 @@ The {$site_name} Team</p>";
 	 */
 	public function advanced_username_manager_bp_nav_setup() {
 		
+		// only add if settings component is enabled.
+		if ( ! bp_is_active( 'settings' ) ) {
+			return;
+		}
+		
 		$settings_link = bp_displayed_user_domain() . bp_get_settings_slug() . '/';
 
 		bp_core_new_subnav_item( array(
