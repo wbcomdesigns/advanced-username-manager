@@ -121,8 +121,8 @@ class Advanced_Username_Manager_Public {
 			'limit_days'				=> ( isset( $aum_general_settings['limit_days'] ) && $aum_general_settings['limit_days'] != ''  ) ? $aum_general_settings['limit_days'] : 7,
 			'min_username_length'				=> $min_username_length,
 			'max_username_length'				=> $max_username_length,						
-			'min_username_error'			=> sprintf(esc_html__('Username must be at least %s characters long.', 'advanced-username-change' ), esc_attr($min_username_length) ),
-			'max_username_error'			=> sprintf(esc_html__('Username must not exceed %s characters.', 'advanced-username-change' ), esc_attr($max_username_length)),			
+			'min_username_error'			=> sprintf(esc_html__('Username must be at least %s characters long.', 'advanced-username-manager' ), esc_attr($min_username_length) ),
+			'max_username_error'			=> sprintf(esc_html__('Username must not exceed %s characters.', 'advanced-username-manager' ), esc_attr($max_username_length)),			
 		);
 		wp_localize_script( $this->plugin_name, 'aum_options', $js_object );
 
@@ -446,7 +446,7 @@ The {$site_name} Team</p>";
 	 * Settings content title
 	 */
 	public function advanced_username_manager_print_title() {
-		 esc_html_e( 'Change Username', 'bp-username-changer' );
+		 esc_html_e( 'Change Username', 'advanced-username-manager' );
 	}
 	
 	/**
