@@ -3,6 +3,7 @@
 ----------------------------------------------------------------
 # Variables
 # Shortcode
+# Autocomplete Suggestions
 --------------------------------------------------------------*/
 
 
@@ -75,5 +76,35 @@ form.aum-standard-form p.submit {
 .aum-error {
     background-color: var(--aum-error-bg-color);
     color: var(--aum-error-color);
+}
+
+/*--------------------------------------------------------------
+# Autocomplete Suggestions
+--------------------------------------------------------------*/
+#aum-autocomplete-suggestions {
+    background: var(--aum-content-background-color);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-radius: var(--aum-global-border-radius);
+}
+
+#aum-autocomplete-suggestions .aum-autocomplete-suggestion {
+    border: 1px solid var(--aum-global-border-color);
+    border-bottom: 0;
+    border-radius: 0 !important;
+    margin: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#aum-autocomplete-suggestions .aum-autocomplete-suggestion:hover {
+    background-color: var(--aum-global-primary-color);
+    border-color: var(--aum-global-primary-color);
+    color: #fff;
+}
+
+#aum-autocomplete-suggestions .aum-autocomplete-suggestion:last-child {
+    border-bottom: 1px solid var(--aum-global-border-color);
 }
 /*# sourceMappingURL=advanced-username-manager-public.css.map */
