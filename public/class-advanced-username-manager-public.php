@@ -138,20 +138,24 @@ class Advanced_Username_Manager_Public {
 	public function advanced_username_manager_change_username_func( $atts, $content ) {
 		global $aum_general_settings;		
 		
+		
+		ob_start();
 		if( !isset($aum_general_settings['enable_username']) ) {
 			?>
 			<div class="aum-error">
-				<?php return esc_html__( 'Username changes are temporarily disabled. Please try again later or contact support for assistance.', 'advanced-username-manager' ); ?>
+				<?php echo  esc_html__( 'Username changes are temporarily disabled. Please try again later or contact support for assistance.', 'advanced-username-manager' ); ?>
 			</div>
 			<?php
+			return ob_get_clean();
 		}
 		
 		if( !is_user_logged_in() || ( isset($aum_general_settings['enable_username']) && $aum_general_settings['enable_username']!= 'yes' ) ) {
 			?>
 			<div class="aum-error">
-				<?php return esc_html__( 'To change your username, please log in first.', 'advanced-username-manager' ); ?>
+				<?php echo esc_html__( 'To change your username, please log in first.', 'advanced-username-manager' ); ?>
 			</div>
 			<?php
+			return ob_get_clean();
 		}
 		
 		if (  function_exists( 'bp_is_user') && bp_is_user() ) {
@@ -165,9 +169,17 @@ class Advanced_Username_Manager_Public {
 			$aum_general_settings['user_roles'] = array_merge( $aum_general_settings['user_roles'], ['administrator']);
 		}
 		if( is_array($aum_general_settings['user_roles']) && empty( array_intersect( $current_user_roles, $aum_general_settings['user_roles']) ) ) {
+			?> 
 			return esc_html__( 'You are not allowed to change the username. Please contact the administrator for assistance.', 'advanced-username-manager' );
+			
+			<div class="aum-error">
+				<?php echo esc_html__( 'To change your username, please log in first.', 'advanced-username-manager' ); ?>
+			</div>
+			<?php
+			return ob_get_clean();
+			
 		}		
-		ob_start();
+		
 		?>
 			<form name="advanced_username_change" method="post" class="aum-standard-form">
 				<div class="aum-input-field">
