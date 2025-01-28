@@ -128,6 +128,9 @@ class Advanced_Username_Manager {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-advanced-username-manager-public.php';
+		
+		/* Require plugin license file. */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'edd-license/edd-plugin-license.php';
 
 		$this->loader = new Advanced_Username_Manager_Loader();
 
