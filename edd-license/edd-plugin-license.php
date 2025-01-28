@@ -363,7 +363,7 @@ function wbcom_advanced_username_manager_render_license_section() {
 	$license = get_option( 'edd_wbcom_advanced_username_manager_license_key', true );
 	$status  = get_option( 'edd_wbcom_advanced_username_manager_license_status' );
 
-	$license_output = ADVANCED_USERNAME_MANAGER_active_license_message();
+	$license_output = advanced_username_manager_active_license_message();
 
 	if ( false !== $status && 'valid' === $status && ! empty( $license_output ) && $license_output['license_data']->license == 'valid' ) {
 		$status_class = 'active';
@@ -428,7 +428,7 @@ function wbcom_advanced_username_manager_render_license_section() {
  *
  * @return array $output store license data.
  */
-function ADVANCED_USERNAME_MANAGER_active_license_message() {
+function advanced_username_manager_active_license_message() {
 	global $wp_version, $pagenow;
 
 	if ( $pagenow === 'plugins.php' || $pagenow === 'index.php' || ( isset( $_GET['page'] ) && $_GET['page'] === 'wbcom-license-page' ) ) {
