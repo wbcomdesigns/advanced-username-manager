@@ -224,24 +224,10 @@ class Advanced_Username_Manager_Admin {
 	 * @return void
 	 */
 	public function advanced_username_manager_save_options() {
-		
-		
 		/* General Settings Saved */
-		if ( isset( $_POST['advanced_username_manager_general_settings'] ) && ! defined( 'DOING_AJAX' ) ) {
-			
-			check_admin_referer( 'advanced_username_manager_general_settings-options' );
-			
-			$general_settings = $this->advanced_username_manager_sanitize_recursive( wp_unslash( $_POST['advanced_username_manager_general_settings'] ) );
-			
-			if( isset($general_settings['bp_profile_slug_format']) && $general_settings['bp_profile_slug_format'] == 'unique_identifier' && class_exists( 'BuddyPress' ) && !buddypress()->buddyboss ) {
-				/* generate unique identifier */
-				advanced_username_manager_update_repair_member_slug();
-			} 
-			
-			update_option( 'advanced_username_manager_general_settings', $general_settings );
-			wp_redirect( esc_url_raw( wp_unslash( $_POST['_wp_http_referer'] ) ) );
-			exit;
-		}		
+		
+		register_setting( 'advanced_username_manager_general_settings', 'advanced_username_manager_general_settings' );
+		
 	}
 
 }
