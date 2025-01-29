@@ -115,7 +115,7 @@
 								var suggestionList = '';
 								if (suggestions.length > 0) {
 									suggestions.forEach(function (item) {
-										suggestionList += '<li style="padding: 5px; cursor: pointer;">' + item + '</li>';
+										suggestionList += '<li class="aum-autocomplete-suggestion">' + item + '</li>';
 									});
 									$('#aum-autocomplete-suggestions').html(suggestionList).show();
 								}
