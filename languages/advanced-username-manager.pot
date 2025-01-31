@@ -9,13 +9,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-28T12:29:26+00:00\n"
+"POT-Creation-Date: 2025-01-31T05:48:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: advanced-username-manager\n"
 
 #. Plugin Name of the plugin
-#: advanced-username-manager.php
 #: admin/class-advanced-username-manager-admin.php:137
 #: admin/class-advanced-username-manager-admin.php:173
 #: admin/wbcom/templates/wbcom-license-page.php:12
@@ -23,22 +22,18 @@ msgid "Advanced Username Manager"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: advanced-username-manager.php
 msgid "https://wbcomdesigns.com/downloads/advanced-username-manager"
 msgstr ""
 
 #. Description of the plugin
-#: advanced-username-manager.php
 msgid "This is a description of the plugin."
 msgstr ""
 
 #. Author of the plugin
-#: advanced-username-manager.php
 msgid "Wbcom Designs"
 msgstr ""
 
 #. Author URI of the plugin
-#: advanced-username-manager.php
 msgid "https://wbcomdesigns.com//"
 msgstr ""
 
