@@ -170,7 +170,6 @@ class Advanced_Username_Manager {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'advanced_username_manager_add_admin_menu' );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'advanced_username_manager_save_options' );
-
 	}
 
 	/**
@@ -197,6 +196,10 @@ class Advanced_Username_Manager {
 		$this->loader->add_filter( 'init', $plugin_public, 'advanced_username_manager_add_wss_endpoint', 10 );
 		$this->loader->add_filter( 'woocommerce_account_menu_items', $plugin_public, 'advanced_username_manager_woocommerce_account_menu_items', 10 );
 		$this->loader->add_action( 'woocommerce_account_change-username_endpoint', $plugin_public, 'advanced_username_manager_woocommece_print_form' );
+		
+		$this->loader->add_action( 'register_new_user', $plugin_public, 'advanced_username_manager_register_new_user' );
+		$this->loader->add_action( 'user_register', $plugin_public, 'advanced_username_manager_register_new_user' );
+		
 
 	}
 

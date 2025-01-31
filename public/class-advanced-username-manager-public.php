@@ -532,4 +532,8 @@ The {$site_name} Team</p>";
 		<?php
 		$this->advanced_username_manager_print_form();
 	}
+	
+	public function advanced_username_manager_register_new_user( $user_id ) {
+		advanced_username_manager_set_bulk_user_profile_slug( [$user_id] );		
+	}
 }

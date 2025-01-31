@@ -24,8 +24,6 @@ function advanced_username_manager_set_bulk_user_profile_slug( $user_ids ) {
 	if ( empty( $user_ids ) ) {
 		return;
 	}
-
-	$implode_user_ids = implode( ',', $user_ids );
 	
 	foreach ( $user_ids as $key => $user_id ) {
 		// removed old user meta which have value length 40.
