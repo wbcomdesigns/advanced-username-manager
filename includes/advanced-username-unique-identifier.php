@@ -90,8 +90,9 @@ function advanced_username_manager_core_get_user_slug( int $user_id ) {
 
 add_filter( 'bp_members_get_user_slug', 'advanced_username_manager_get_user_slug', 10, 2 );
 function advanced_username_manager_get_user_slug( $slug, $user_id  ) {
+
 	global $aum_general_settings;	
-	if( isset( $aum_general_settings['bp_profile_slug_format']) && $aum_general_settings['bp_profile_slug_format'] == 'username' ) {
+	if( isset( $aum_general_settings['bp_profile_slug_format']) && $aum_general_settings['bp_profile_slug_format'] == 'username' ) {		
 		return $slug;
 	}
 	
@@ -107,10 +108,7 @@ function advanced_username_manager_get_user_slug( $slug, $user_id  ) {
 add_filter( 'bp_core_set_uri_globals_member_slug', 'advanced_username_manager_set_uri_globals_member_slug', 20 );
 function advanced_username_manager_set_uri_globals_member_slug( $member_slug ) {
 	
-	global $aum_general_settings, $wpdb;	
-	if( isset( $aum_general_settings['bp_profile_slug_format']) && $aum_general_settings['bp_profile_slug_format'] == 'username' ) {
-		return $member_slug;
-	}
+	global $aum_general_settings, $wpdb;
 	
 	$user_id = $wpdb->get_var(
 		$wpdb->prepare(
@@ -119,7 +117,14 @@ function advanced_username_manager_set_uri_globals_member_slug( $member_slug ) {
 			$member_slug,
 			1			
 		)
-	);
+	);	
+	if( isset( $aum_general_settings['bp_profile_slug_format']) && $aum_general_settings['bp_profile_slug_format'] == 'username' ) {
+		if( !empty($user_id) ) {
+			return get_user_by( 'id', $user_id )->user_login;
+		}
+		return $member_slug;
+	}	
+	
 	
 	if( !empty( $user_id) ) {	
 		return get_user_by( 'id', $user_id )->user_login;		
