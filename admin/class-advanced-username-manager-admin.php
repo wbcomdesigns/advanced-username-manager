@@ -60,6 +60,10 @@ class Advanced_Username_Manager_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
+		
+		if( !isset($_GET['page']) || ( isset($_GET['page']) && $_GET['page'] != 'advanced-username-manager' ) ) {
+			return;
+		}
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -94,6 +98,10 @@ class Advanced_Username_Manager_Admin {
 	 */
 	public function enqueue_scripts() {
 
+		if( !isset($_GET['page']) || ( isset($_GET['page']) && $_GET['page'] != 'advanced-username-manager' ) ) {
+			return;
+		}
+		
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *

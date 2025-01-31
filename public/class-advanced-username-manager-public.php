@@ -80,7 +80,7 @@ class Advanced_Username_Manager_Public {
 			$path      = is_rtl() ? '/rtl' : '/min';
 		}
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css' . $path . '/advanced-username-manager-public' . $extension, array(), $this->version, 'all' );
+		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css' . $path . '/advanced-username-manager-public' . $extension, array(), $this->version, 'all' );
 	}
 
 	/**
@@ -111,7 +111,7 @@ class Advanced_Username_Manager_Public {
 			$path      = '/min';
 		}
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js' . $path . '/advanced-username-manager-public' . $extension, array( 'jquery' ), $this->version, false );
+		wp_register_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js' . $path . '/advanced-username-manager-public' . $extension, array( 'jquery' ), $this->version, false );
 
 		$min_username_length	= ( isset( $aum_general_settings['min_username_length'] ) && $aum_general_settings['min_username_length'] != ''  )? $aum_general_settings['min_username_length'] : 5;
 		$max_username_length	= ( isset( $aum_general_settings['max_username_length'] ) && $aum_general_settings['max_username_length'] != ''  )? $aum_general_settings['max_username_length'] : 12;		
@@ -178,6 +178,8 @@ class Advanced_Username_Manager_Public {
 			
 		}
 		
+		wp_enqueue_style($this->plugin_name);
+		wp_enqueue_script($this->plugin_name);
 		?>
 			<form name="advanced_username_change" method="post" class="aum-standard-form">
 				<div class="aum-input-field">
