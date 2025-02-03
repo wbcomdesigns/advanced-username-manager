@@ -4,6 +4,7 @@
 # Variables
 # Shortcode
 # Autocomplete Suggestions
+# Youzify
 --------------------------------------------------------------*/
 
 
@@ -106,4 +107,37 @@ form.aum-standard-form p.submit {
 
 #aum-autocomplete-suggestions .aum-autocomplete-suggestion:last-child {
     border-bottom: 1px solid var(--aum-global-border-color);
+}
+
+/*--------------------------------------------------------------
+# Youzify
+--------------------------------------------------------------*/
+.youzify-inner-content.settings-inner-content h3 {
+    display: block;
+    line-height: inherit;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0;
+    padding: 30px 45px;
+    border-bottom: 1px solid var(--yzfy-card-secondary-bg-color);
+}
+
+.youzify form.aum-standard-form {
+    border: 0;
+}
+
+.youzify form.aum-standard-form p.aum-error {
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 480px) {
+    .youzify-inner-content.settings-inner-content h3 {
+        display: block;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .youzify-inner-content.settings-inner-content h3 {
+        padding: 25px;
+    }
 }
