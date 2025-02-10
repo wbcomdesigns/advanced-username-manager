@@ -365,14 +365,14 @@ function wbcom_advanced_username_manager_render_license_section() {
 
 	$license_output = advanced_username_manager_active_license_message();
 
-	if ( false !== $status && 'valid' === $status && ! empty( $license_output ) && $license_output['license_data']->license == 'valid' ) {
+	if ( false !== $status && 'valid' === $status && isset( $license_output['license_data'] ) && ! empty( $license_output['license_data'] ) && $license_output['license_data']->license == 'valid' ) {
 		$status_class = 'active';
 		$status_text  = 'Active';
-	} elseif ( ! empty( $license_output ) && $license_output['license_data']->license != '' && $license_output['license_data']->license == 'expired' ) {
+	} elseif ( isset( $license_output['license_data'] ) && ! empty( $license_output['license_data'] ) && $license_output['license_data']->license == 'expired' ) {
 		$status_class = 'expired';
 		$status_text  = ucfirst( str_replace( '_', ' ', $license_output['license_data']->license ) );
 
-	} elseif ( ! empty( $license_output ) && $license_output['license_data']->license != '' && $license_output['license_data']->license == 'invalid' ) {
+	} elseif ( isset( $license_output['license_data'] ) && ! empty( $license_output['license_data'] ) && $license_output['license_data']->license == 'invalid' ) {
 		$status_class = 'invalid';
 		$status_text  = ucfirst( str_replace( '_', ' ', $license_output['license_data']->license ) );
 
