@@ -43,19 +43,20 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 					do_settings_sections( 'advanced_username_manager_general_settings' );					
 					?>
 					<div class="form-table">
-						
-						<div class="wbcom-settings-section-wrap">
-							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Enable Username Change in Profile', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Adds a tab in the Profile Settings for BuddyPress and BuddyBoss, allowing users to change their username from the front-end.', 'advanced-username-manager' ); ?></p>
+						<?php if( class_exists( 'Buddypress' )  ){	?>	
+							<div class="wbcom-settings-section-wrap">
+								<div class="wbcom-settings-section-options-heading">
+									<label><?php esc_html_e( 'Enable Username Change in Profile', 'advanced-username-manager' ); ?></label>
+									<p class="description"><?php esc_html_e( 'Adds a tab in the Profile Settings for BuddyPress and BuddyBoss, allowing users to change their username from the front-end.', 'advanced-username-manager' ); ?></p>
+								</div>
+								<div class="wbcom-settings-section-options">
+									<label class="wb-switch">
+										<input name="advanced_username_manager_general_settings[enable_username]" type="checkbox" class="regular-text" value="yes" <?php checked( $enable_username, 'yes' ); ?> >
+										<div class="wb-slider wb-round"></div>
+									</label>
+								</div>
 							</div>
-							<div class="wbcom-settings-section-options">
-								<label class="wb-switch">
-									<input name="advanced_username_manager_general_settings[enable_username]" type="checkbox" class="regular-text" value="yes" <?php checked( $enable_username, 'yes' ); ?> >
-									<div class="wb-slider wb-round"></div>
-								</label>
-							</div>
-						</div>	
+						<?php } ?>	
 						<?php if( class_exists( 'WooCommerce' )  ){	?>		
 							<div class="wbcom-settings-section-wrap">
 								<div class="wbcom-settings-section-options-heading">
