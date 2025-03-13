@@ -225,10 +225,10 @@ class Advanced_Username_Manager_Public {
 									$limit_days_ago, 
 									$user_id ) 
 								);		
-		if( $results != '' ){
-			$next_date = date_i18n('Y-m-d', strtotime( $results .' +'. $limit_days .' days' ) );
+		if( $results != '' ){			
+			$next_date = date_i18n('F j, Y', strtotime( $results .' +'. $limit_days .' days' ) );
 		 	$retval = array(			
-				'error_message'	=> sprintf(esc_html__( 'You already updated your username. You can update your username after %s', 'advanced-username-manager' ) , esc_html($next_date)),
+				'error_message'	=> sprintf(esc_html__( 'You have already updated your username. You can change it again after %s', 'advanced-username-manager' ) , esc_html($next_date)),
 			);
 			wp_send_json_error( $retval );
 		}
