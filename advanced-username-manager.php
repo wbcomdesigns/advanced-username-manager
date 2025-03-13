@@ -100,3 +100,12 @@ function advanced_username_manager_activation_redirect_settings( $plugin ) {
 	}
 
 }
+
+/*
+** Added plugin setting link
+*/
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'advanced_username_manager_settings_link' );
+function advanced_username_manager_settings_link( $settings ) {
+	$settings[] = '<a href="' . esc_url( admin_url( 'admin.php?page=advanced-username-manager&tab=general-setting' ) ) . '">Settings</a>';
+	return $settings;
+}
