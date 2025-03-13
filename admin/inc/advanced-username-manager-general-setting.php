@@ -45,8 +45,8 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 						
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Enable username', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Manage to change/update username', 'advanced-username-manager' ); ?></p>
+								<label><?php esc_html_e( 'Enable Username Change in Profile', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Adds a tab in the Profile Settings for BuddyPress and BuddyBoss, allowing users to change their username from the front-end.', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<label class="wb-switch">
@@ -58,8 +58,8 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 
 						<div class="wbcom-settings-section-wrap wbcom-select-user-role-section">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Select User role(s)', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Select user roles base allow to modify username change', 'advanced-username-manager' ); ?></p>
+								<label><?php esc_html_e( 'Select User Role(s)', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Choose the user roles that are allowed to modify their username.', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<select class="aum-select" name="advanced_username_manager_general_settings[user_roles][]" multiple>
@@ -78,8 +78,8 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 						
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Limit Days', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'User can change the username base on selected period', 'advanced-username-manager' ); ?></p>
+								<label><?php esc_html_e( 'Username Change Limit', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Set the number of days after which users can change their username again.', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<select name="advanced_username_manager_general_settings[limit_days]">
@@ -93,8 +93,8 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 						
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Minimum username length', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'User can set minumu username length', 'advanced-username-manager' ); ?></p>
+								<label><?php esc_html_e( 'Minimum Username Length', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Set the minimum number of characters required for a username.', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">								
 								<input name="advanced_username_manager_general_settings[min_username_length]" type="text" class="regular-text" value="<?php echo esc_attr($min_username_length);?>" id="min_username_length">								
@@ -103,8 +103,8 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 						
 						<div class="wbcom-settings-section-wrap">
 							<div class="wbcom-settings-section-options-heading">
-								<label><?php esc_html_e( 'Maximum username length', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'User can set maximum username length', 'advanced-username-manager' ); ?></p>
+								<label><?php esc_html_e( 'Maximum Username Length', 'advanced-username-manager' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Set the maximum number of characters allowed for a username.', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<input name="advanced_username_manager_general_settings[max_username_length]" type="text" class="regular-text" value="<?php echo esc_attr($max_username_length);?>" id="max_username_length">
@@ -114,8 +114,8 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 						<?php if( class_exists( 'BuddyPress' ) && !buddypress()->buddyboss ) : ?>
 							<div class="wbcom-settings-section-wrap">
 								<div class="wbcom-settings-section-options-heading">
-									<label><?php esc_html_e( 'User link format', 'advanced-username-manager' ); ?></label>
-									<p class="description"><?php esc_html_e( 'Select the format of your member’s profile links (i.e. /members/username). Both formats will open the member’s profile, so you can safely change without breaking previously shared links.', 'advanced-username-manager' ); ?></p>
+									<label><?php esc_html_e( 'User Profile Link Format', 'advanced-username-manager' ); ?></label>
+									<p class="description"><?php esc_html_e( 'Choose the format for member profile links (e.g., /members/username). Both formats will work, ensuring previously shared links remain accessible.', 'advanced-username-manager' ); ?></p>
 								</div>
 								<div class="wbcom-settings-section-options">
 									<select name="advanced_username_manager_general_settings[bp_profile_slug_format]">
