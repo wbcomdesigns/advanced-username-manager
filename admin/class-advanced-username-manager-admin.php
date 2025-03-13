@@ -252,4 +252,19 @@ class Advanced_Username_Manager_Admin {
 		
 	}	
 
+	/**
+	 * Remove all notices from my settings page
+	 *
+	 * @since 1.0.0
+	 */
+	public function advanced_username_manager_hide_all_admin_notices_from_setting_page() {
+		$wbcom_pages_array  = array( 'wbcomplugins', 'wbcom-plugins-page', 'wbcom-support-page', 'advanced-username-manager' );
+		$wbcom_setting_page = filter_input( INPUT_GET, 'page' ) ? filter_input( INPUT_GET, 'page' ) : '';
+
+		if ( in_array( $wbcom_setting_page, $wbcom_pages_array, true ) ) {
+			remove_all_actions( 'admin_notices' );
+			remove_all_actions( 'all_admin_notices' );
+		}
+	}
+
 }
