@@ -22,9 +22,10 @@ $limit_options    = [
 						'30'=> esc_html__('30 Days', 'advanced-username-manager' ), 
 					];
 					
-$enable_username 	= ( isset( $general_settings['enable_username'] ) ) ? $general_settings['enable_username'] : '';
-$user_roles 		= ( isset( $general_settings['user_roles'] ) ) ? $general_settings['user_roles'] : '';
-$limit_days 		= ( isset( $general_settings['limit_days'] ) ) ? $general_settings['limit_days'] : '7';
+$enable_username 		= ( isset( $general_settings['enable_username'] ) ) ? $general_settings['enable_username'] : '';
+$enable_wc_username 	= ( isset( $general_settings['enable_wc_username'] ) ) ? $general_settings['enable_wc_username'] : '';
+$user_roles 			= ( isset( $general_settings['user_roles'] ) ) ? $general_settings['user_roles'] : '';
+$limit_days 			= ( isset( $general_settings['limit_days'] ) ) ? $general_settings['limit_days'] : '7';
 $min_username_length	= ( isset( $general_settings['min_username_length'] ) ) ? $general_settings['min_username_length'] : '';
 $max_username_length	= ( isset( $general_settings['max_username_length'] ) ) ? $general_settings['max_username_length'] : '';
 $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] ) ) ? $general_settings['bp_profile_slug_format'] : '';
@@ -54,8 +55,21 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 									<div class="wb-slider wb-round"></div>
 								</label>
 							</div>
-						</div>		
-
+						</div>	
+						<?php if( class_exists( 'WooCommerce' )  ){	?>		
+							<div class="wbcom-settings-section-wrap">
+								<div class="wbcom-settings-section-options-heading">
+									<label><?php esc_html_e( 'Enable Username Change in Woocommerce', 'advanced-username-manager' ); ?></label>
+									<p class="description"><?php esc_html_e( 'Adds a tab in the My Account for WooCommerce, allowing users to change their username from the front-end.', 'advanced-username-manager' ); ?></p>
+								</div>
+								<div class="wbcom-settings-section-options">
+									<label class="wb-switch">
+										<input name="advanced_username_manager_general_settings[enable_wc_username]" type="checkbox" class="regular-text" value="yes" <?php checked( $enable_wc_username, 'yes' ); ?> >
+										<div class="wb-slider wb-round"></div>
+									</label>
+								</div>
+							</div>	
+						<?php } ?>
 						<div class="wbcom-settings-section-wrap wbcom-select-user-role-section">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Select User Role(s)', 'advanced-username-manager' ); ?></label>
