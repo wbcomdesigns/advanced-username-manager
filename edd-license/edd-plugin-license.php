@@ -347,7 +347,7 @@ function edd_wbcom_advanced_username_manager_admin_notices() {
 		<div class="notice notice-error is-dismissible">
 			<p>
 			<?php
-			echo esc_html__( 'Please activate your  Wbcom Designs - BuddyPress Business Profile plugin license key.', 'advanced-username-manager' );
+			echo esc_html__( 'Please activate your  Advanced Username Manager plugin license key.', 'advanced-username-manager' );
 			?>
 			</p>			
 		</div>
