@@ -16,4 +16,8 @@
 .nav-tab-wrapper ul li.general-setting a.nav-tab:before {
     content: "\f111" !important;
 }
+
+.nav-tab-wrapper ul li.faq a.nav-tab:before {
+    content: "\f101";
+}
 /*# sourceMappingURL=advanced-username-manager-admin.css.map */

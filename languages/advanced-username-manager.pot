@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-03T13:39:58+00:00\n"
+"POT-Creation-Date: 2025-03-13T07:51:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: advanced-username-manager\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: advanced-username-manager.php
 #: admin/class-advanced-username-manager-admin.php:145
-#: admin/class-advanced-username-manager-admin.php:181
+#: admin/class-advanced-username-manager-admin.php:182
 #: admin/wbcom/templates/wbcom-license-page.php:12
 msgid "Advanced Username Manager"
 msgstr ""
@@ -29,7 +29,7 @@ msgstr ""
 
 #. Description of the plugin
 #: advanced-username-manager.php
-msgid "This is a description of the plugin."
+msgid "Advanced Username Manager allows users to easily change their login username for added flexibility."
 msgstr ""
 
 #. Author of the plugin
@@ -39,7 +39,7 @@ msgstr ""
 
 #. Author URI of the plugin
 #: advanced-username-manager.php
-msgid "https://wbcomdesigns.com//"
+msgid "https://wbcomdesigns.com/"
 msgstr ""
 
 #: admin/class-advanced-username-manager-admin.php:141
@@ -55,14 +55,78 @@ msgid "Welcome"
 msgstr ""
 
 #: admin/class-advanced-username-manager-admin.php:163
-#: admin/inc/advanced-username-manager-general-setting.php:35
+#: admin/inc/advanced-username-manager-general-setting.php:36
 msgid "General Settings"
 msgstr ""
 
+#: admin/class-advanced-username-manager-admin.php:164
+msgid "FAQ"
+msgstr ""
+
 #. translators: %s:
-#: admin/class-advanced-username-manager-admin.php:183
+#: admin/class-advanced-username-manager-admin.php:184
 #: admin/wbcom/templates/wbcom-license-page.php:14
 msgid "Version %s"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:21
+msgid "Have some questions?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:28
+msgid "What is Advanced Username Manager?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:32
+msgid "Advanced Username Manager is a WordPress plugin that allows users to change their usernames directly from the frontend while providing administrators with control over permissions, restrictions, and formatting options. It enhances user experience by making username management seamless and secure."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:41
+msgid "Can users change their usernames from the frontend?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:45
+msgid "Yes, users can update their usernames directly from the frontend without needing administrator approval. This makes the process more user-friendly and efficient."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:54
+msgid "Can administrators restrict who can change their usernames?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:58
+msgid "Yes, administrators can enable or disable username changes and specify which user roles, such as Editors, Authors, Contributors, or Subscribers, are allowed to modify their usernames."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:67
+msgid "Is there a limit to how often a user can change their username?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:71
+msgid "Yes, administrators can set a waiting period before a user can change their username again. Options include 7 Days, 15 Days, or 30 Days, ensuring controlled and structured username updates."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:80
+msgid "Does the plugin check username availability in real time?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:84
+msgid "Yes, the plugin provides a real-time username availability check, preventing duplicate usernames and suggesting alternative options if the desired username is already taken."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:94
+msgid "What is the Unique Identifier feature?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:98
+msgid "The Unique Identifier feature allows administrators to generate secure, random profile URLs for users instead of using their usernames. This enhances privacy by ensuring that profile URLs remain functional even after a username change."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:107
+msgid "How do users change their username using the shortcode?"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-faq-setting.php:111
+msgid "Users can change their username by navigating to a page where the administrator has placed the [username_manager] shortcode. This will display a simple form for users to update their username directly from the frontend."
 msgstr ""
 
 #: admin/inc/advanced-username-manager-general-setting.php:20
@@ -77,59 +141,67 @@ msgstr ""
 msgid "30 Days"
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:48
-msgid "Enable username"
-msgstr ""
-
 #: admin/inc/advanced-username-manager-general-setting.php:49
-msgid "Manage to change/update username"
+msgid "Enable Username Change in Profile"
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:61
-msgid "Select User role(s)"
+#: admin/inc/advanced-username-manager-general-setting.php:50
+msgid "Adds a tab in the Profile Settings for BuddyPress and BuddyBoss, allowing users to change their username from the front-end."
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:62
-msgid "Select user roles base allow to modify username change"
+#: admin/inc/advanced-username-manager-general-setting.php:63
+msgid "Enable Username Change in Woocommerce"
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:81
-msgid "Limit Days"
+#: admin/inc/advanced-username-manager-general-setting.php:64
+msgid "Adds a tab in the My Account for WooCommerce, allowing users to change their username from the front-end."
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:82
-msgid "User can change the username base on selected period"
+#: admin/inc/advanced-username-manager-general-setting.php:76
+msgid "Select User Role(s)"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-general-setting.php:77
+msgid "Choose the user roles that are allowed to modify their username."
 msgstr ""
 
 #: admin/inc/advanced-username-manager-general-setting.php:96
-msgid "Minimum username length"
+msgid "Username Change Limit"
 msgstr ""
 
 #: admin/inc/advanced-username-manager-general-setting.php:97
-msgid "User can set minumu username length"
+msgid "Set the number of days after which users can change their username again."
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:106
-msgid "Maximum username length"
+#: admin/inc/advanced-username-manager-general-setting.php:111
+msgid "Minimum Username Length"
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:107
-msgid "User can set maximum username length"
+#: admin/inc/advanced-username-manager-general-setting.php:112
+msgid "Set the minimum number of characters required for a username."
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:117
-msgid "User link format"
-msgstr ""
-
-#: admin/inc/advanced-username-manager-general-setting.php:118
-msgid "Select the format of your member’s profile links (i.e. /members/username). Both formats will open the member’s profile, so you can safely change without breaking previously shared links."
+#: admin/inc/advanced-username-manager-general-setting.php:121
+msgid "Maximum Username Length"
 msgstr ""
 
 #: admin/inc/advanced-username-manager-general-setting.php:122
+msgid "Set the maximum number of characters allowed for a username."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-general-setting.php:132
+msgid "User Profile Link Format"
+msgstr ""
+
+#: admin/inc/advanced-username-manager-general-setting.php:133
+msgid "Choose the format for member profile links (e.g., /members/username). Both formats will work, ensuring previously shared links remain accessible."
+msgstr ""
+
+#: admin/inc/advanced-username-manager-general-setting.php:137
 msgid "Username"
 msgstr ""
 
-#: admin/inc/advanced-username-manager-general-setting.php:123
+#: admin/inc/advanced-username-manager-general-setting.php:138
 msgid "Unique Identifier"
 msgstr ""
 
@@ -150,7 +222,7 @@ msgid "Documentation"
 msgstr ""
 
 #: admin/inc/advanced-username-manager-welcome-page.php:32
-msgid "We have prepared an extensive guide on Advanced Username Manager to learn all aspects of the plugin. You will find most of your answers here."
+msgid "We’ve created a comprehensive guide on Advanced Username Manager to help you understand all aspects of the plugin. Most of your questions can be answered here."
 msgstr ""
 
 #: admin/inc/advanced-username-manager-welcome-page.php:33
@@ -162,7 +234,7 @@ msgid "Support Center"
 msgstr ""
 
 #: admin/inc/advanced-username-manager-welcome-page.php:40
-msgid "We strive to offer the best customer care via our support center. Once your plugin is activated, you can ask us for help anytime."
+msgid "We are dedicated to providing top-notch customer support. Once your plugin is activated, feel free to reach out anytime for assistance."
 msgstr ""
 
 #: admin/inc/advanced-username-manager-welcome-page.php:41
@@ -174,11 +246,11 @@ msgid "Got Feedback?"
 msgstr ""
 
 #: admin/inc/advanced-username-manager-welcome-page.php:47
-msgid "We want to hear about your experience with the plugin. We would also love to hear any suggestions you may for future updates."
+msgid "We value your experience with the plugin and would love to hear your thoughts. Share your feedback and suggestions for future updates!"
 msgstr ""
 
 #: admin/inc/advanced-username-manager-welcome-page.php:48
-msgid "Send Feedback"
+msgid "Submit Feedback"
 msgstr ""
 
 #: admin/wbcom/templates/wbcom-license-page.php:19
@@ -765,7 +837,7 @@ msgid "Your  Wbcom Designs - BuddyPress Business Profile plugin license key expi
 msgstr ""
 
 #: edd-license/edd-plugin-license.php:350
-msgid "Please activate your  Wbcom Designs - BuddyPress Business Profile plugin license key."
+msgid "Please activate your  Advanced Username Manager plugin license key."
 msgstr ""
 
 #: edd-license/edd-plugin-license.php:412
@@ -838,11 +910,11 @@ msgid "You are not allowed to change the username. Please contact the administra
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:186
-msgid "Current Username"
+msgid "Current username"
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:190
-msgid "New Username"
+msgid "New username"
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:199
@@ -850,7 +922,7 @@ msgid "Save Changes"
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:231
-msgid "You already updated your username. You can update your username after %s"
+msgid "You have already updated your username. You can change it again after %s"
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:249
@@ -890,7 +962,7 @@ msgid "Username Change"
 msgstr ""
 
 #: public/class-advanced-username-manager-public.php:487
-#: public/class-advanced-username-manager-public.php:516
-#: public/class-advanced-username-manager-public.php:531
-msgid "Change Username"
+#: public/class-advanced-username-manager-public.php:519
+#: public/class-advanced-username-manager-public.php:534
+msgid "Change username"
 msgstr ""
