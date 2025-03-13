@@ -33,5 +33,23 @@
 		$('.aum-select').selectize({
 	 		plugins			: ['remove_button']
 	 	});
+		
+		/*faq tab accordion*/
+		var bp_edit_elmt = document.getElementsByClassName("wbcom-faq-accordion");
+		var k;
+		var wb_ads_elmt_len = bp_edit_elmt.length;
+		for (k = 0; k < wb_ads_elmt_len; k++) {
+			bp_edit_elmt[k].onclick = function () {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.maxHeight) {
+					panel.style.maxHeight = null;
+				} else {
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			};
+		}
+		
+
 	 });
 })( jQuery );

@@ -160,7 +160,8 @@ class Advanced_Username_Manager_Admin {
 
 		$advanced_username_manager_tabs = array(
 			'welcome'         => esc_html__( 'Welcome', 'advanced-username-manager' ),
-			'general-setting' => esc_html__( 'General Settings', 'advanced-username-manager' ),			
+			'general-setting' => esc_html__( 'General Settings', 'advanced-username-manager' ),
+			'faq'        	  => esc_html__( 'FAQ', 'advanced-username-manager' ),			
 		);		
 		
 		?>
