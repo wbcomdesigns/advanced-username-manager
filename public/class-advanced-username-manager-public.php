@@ -373,18 +373,21 @@ class Advanced_Username_Manager_Public {
 		$site_name     	= get_bloginfo( 'name' );
 		$user_email   	= $user->user_email;
 		$email_subject 	= apply_filters( 'advanced_username_manager_email_subject', sprintf( esc_html__('%s Your Username Has Been Successfully Updated !', 'advanced-username-manager'), $site_name ) );
-		$email_content 	= "<p>Hello {$user->display_name},</p>
-
-<p>We're writing to let you know that your username on {$site_name} has been successfully updated.</p>
-
-<p>Your new username is: <strong>{$new_user_name}</strong></p>
-
-<p>If you did not request this change, please contact our support team immediately to secure your account.</p>
-
-<p>Thank you for being a part of {$site_name}!</p>
-
-<p>Best regards, <br />
-The {$site_name} Team</p>";
+		
+		$email_content 	= sprintf(
+   			'<p>' . esc_html__('Hello %1$s,', 'advanced-username-manager') . '</p>
+   			<p>' . esc_html__('We\'re writing to let you know that your username on %2$s has been successfully updated.', 'advanced-username-manager') . '</p>
+    		<p>' . esc_html__('Your new username is: %3$s', 'advanced-username-manager') . '</p>
+    		<p>' . esc_html__('If you did not request this change, please contact our support team immediately to secure your account.', 'advanced-username-manager') . '</p>
+   			<p>' . esc_html__('Thank you for being part of %4$s!', 'advanced-username-manager') . '</p>
+			<p>' . esc_html__('Best regards,', 'advanced-username-manager') . '<br />
+			' . esc_html__('The %5$s Team', 'advanced-username-manager') . '</p>',
+    		$user->display_name,
+   			$site_name,
+    		'<strong>' . $new_user_name . '</strong>',
+   			$site_name,
+			$site_name
+		);
 		$email_content = apply_filters( 'bp_business_review_email_content', $email_content );
 
 		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
