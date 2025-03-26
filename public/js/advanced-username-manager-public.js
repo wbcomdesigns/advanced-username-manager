@@ -29,6 +29,20 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 	$(document).ready(function () {
+
+		// Added debounce utility function
+		function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    func.apply(context, args);
+                }, wait);
+            };
+        }
+
 		$(document).on('click', '#username_change_submit', function (e) {
 			e.preventDefault();
 
@@ -67,7 +81,7 @@
 			});
 		});
 
-		$(document).on('keyup', '#aum_new_user_name', function (e) {
+		$(document).on('keyup', '#aum_new_user_name', debounce( function (e) {
 			console.log($(this).val());
 			let username = $(this).val();
 			let min_length = aum_options.min_username_length;
@@ -131,7 +145,7 @@
 				}
 
 			}
-		});
+		}) );
 
 		// Select suggestion on click
 		$(document).on('click', '#aum-autocomplete-suggestions li', function () {
