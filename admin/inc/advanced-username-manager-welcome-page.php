@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wbcom-tab-content">
 	<div class="wbcom-welcome-main-wrapper">
 		<div class="wbcom-welcome-head">
-			<p class="wbcom-welcome-description"><?php esc_html_e( 'Advanced Username Manager plugin allows users to change their username(the name with which they login). It is simple and useful if you want to give your users the freedom to change their username.', 'advanced-username-manager' ); ?></p>
+			<p class="wbcom-welcome-description"><?php esc_html_e( 'Advanced Username Manager plugin allows users to change their username (the name they use to log in). It is simple and useful if you want to give your users the freedom to change their usernames.', 'advanced-username-manager' ); ?></p>
 		</div><!-- .wbcom-welcome-head -->
 
 		<div class="wbcom-welcome-content">

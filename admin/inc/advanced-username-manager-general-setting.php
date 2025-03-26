@@ -47,7 +47,7 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 							<div class="wbcom-settings-section-wrap">
 								<div class="wbcom-settings-section-options-heading">
 									<label><?php esc_html_e( 'Enable Username Change in Profile', 'advanced-username-manager' ); ?></label>
-									<p class="description"><?php esc_html_e( 'Adds a tab in the Profile Settings for BuddyPress and BuddyBoss, allowing users to change their username from the front-end.', 'advanced-username-manager' ); ?></p>
+									<p class="description"><?php esc_html_e( 'Adds a tab in the Profile Settings for BuddyPress and BuddyBoss, allowing users to change their username from the frontend.', 'advanced-username-manager' ); ?></p>
 								</div>
 								<div class="wbcom-settings-section-options">
 									<label class="wb-switch">
@@ -61,7 +61,7 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 							<div class="wbcom-settings-section-wrap">
 								<div class="wbcom-settings-section-options-heading">
 									<label><?php esc_html_e( 'Enable Username Change in Woocommerce', 'advanced-username-manager' ); ?></label>
-									<p class="description"><?php esc_html_e( 'Adds a tab in the My Account for WooCommerce, allowing users to change their username from the front-end.', 'advanced-username-manager' ); ?></p>
+									<p class="description"><?php esc_html_e( 'Adds a tab in the My Account section for WooCommerce, allowing users to change their username from the frontend.', 'advanced-username-manager' ); ?></p>
 								</div>
 								<div class="wbcom-settings-section-options">
 									<label class="wb-switch">
@@ -74,7 +74,7 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 						<div class="wbcom-settings-section-wrap wbcom-select-user-role-section">
 							<div class="wbcom-settings-section-options-heading">
 								<label><?php esc_html_e( 'Select User Role(s)', 'advanced-username-manager' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Choose the user roles that are allowed to modify their username.', 'advanced-username-manager' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Choose which user roles are allowed to modify their usernames.', 'advanced-username-manager' ); ?></p>
 							</div>
 							<div class="wbcom-settings-section-options">
 								<select class="aum-select" name="advanced_username_manager_general_settings[user_roles][]" multiple>
@@ -130,7 +130,7 @@ $bp_profile_slug_format	= ( isset( $general_settings['bp_profile_slug_format'] )
 							<div class="wbcom-settings-section-wrap">
 								<div class="wbcom-settings-section-options-heading">
 									<label><?php esc_html_e( 'User Profile Link Format', 'advanced-username-manager' ); ?></label>
-									<p class="description"><?php esc_html_e( 'Choose the format for member profile links (e.g., /members/username). Both formats will work, ensuring previously shared links remain accessible.', 'advanced-username-manager' ); ?></p>
+									<p class="description"><?php esc_html_e( 'Choose the format for member profile links (e.g., /members/username). Both formats will continue to work, ensuring previously shared links remain accessible.', 'advanced-username-manager' ); ?></p>
 								</div>
 								<div class="wbcom-settings-section-options">
 									<select name="advanced_username_manager_general_settings[bp_profile_slug_format]">

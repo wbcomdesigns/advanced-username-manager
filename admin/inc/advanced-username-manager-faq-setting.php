@@ -95,7 +95,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</button>
 					<div class="wbcom-faq-panel">
 						<p> 
-							<?php esc_html_e( 'The Unique Identifier feature allows administrators to generate secure, random profile URLs for users instead of using their usernames. This enhances privacy by ensuring that profile URLs remain functional even after a username change.', 'advanced-username-manager' ); ?>
+							<?php esc_html_e( 'The Unique Identifier feature allows administrators to generate secure, random profile URLs for users instead of using their usernames. This enhances privacy and ensures that profile URLs remain functional even after a username change.', 'advanced-username-manager' ); ?>
 						</p>
 					</div>
 				</div>
