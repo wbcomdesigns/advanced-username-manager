@@ -7,8 +7,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The Advanced Username Manager plugin allows users to change their WordPress usernames while offering administrators robust control over access and restrictions. Seamless, secure, and compatible with third-party plugins.
-
+The Advanced Username Manager plugin allows users to change their WordPress usernames while offering administrators robust control over access and restrictions. It's seamless, secure, and compatible with BuddyPress, WooCommerce, and other third-party plugins.
 == Description ==
 
 The **Advanced Username Manager** plugin enables WordPress users to change their usernames securely while giving administrators full control over permissions and restrictions.
@@ -21,16 +20,18 @@ The **Advanced Username Manager** plugin enables WordPress users to change their
 
 **Administrative Features:**
 
-* Role-Based Access Control
-* Frequency Limits
-* Customizable Username Rules
-* Audit Logs for Username Changes
+* **Role-Based Access Control:** Restrict username changes based on user roles.
+* **Frequency Limits:** Control how often users can change their usernames.
+* **Customizable Username Rules:** Set character limits and formatting rules.
+* **Audit Logs for Username Changes:** Track all username changes for security and compliance.
+
 
 **Security Features:**
 
-* Input Validation & Sanitization
-* Nonce Verification for Secure Submissions
-* Server-Side Validation
+* **Input Validation & Sanitization:** Ensure usernames meet security and formatting requirements.
+* **Nonce Verification for Secure Submissions:** Prevent unauthorized username changes.
+* **Server-Side Validation:** Reinforce security by verifying all changes on the server.
+
 
 **Shortcode Support:**
 
@@ -52,6 +53,15 @@ Go to **Settings > Advanced Username Manager**, and configure role-based access.
 = Can users generate random usernames? =
 
 Yes, the form includes an option to generate a random username.
+
+= Is there a limit to how often a user can change their username?
+
+Yes, administrators can set a waiting period before a user can change their username again. Available options include **7 days, 15 days, or 30 days**, ensuring controlled and structured username updates.
+
+= What is the Unique Identifier feature?
+
+The Unique Identifier feature allows administrators to generate secure, random profile URLs for users instead of using their usernames. This enhances privacy by ensuring that profile URLs remain functional even after a username change.
+
 
 == Screenshots ==
 

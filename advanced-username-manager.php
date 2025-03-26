@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Advanced Username Manager
  * Plugin URI:        https://wbcomdesigns.com/downloads/advanced-username-manager
- * Description:       Advanced Username Manager allows users to easily change their login username for added flexibility.
+ * Description:       Advanced Username Manager allows users to easily change their login usernames with powerful admin controls and integration with BuddyPress and WooCommerce.
  * Version:           1.0.0
  * Author:            Wbcom Designs
  * Author URI:        https://wbcomdesigns.com/
