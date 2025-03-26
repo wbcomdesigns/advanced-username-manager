@@ -221,6 +221,8 @@ class Advanced_Username_Manager_Public {
 		
 		check_ajax_referer( 'advanced-username-change', 'nonce' );
 		
+		do_action('advanced_username_manager_before_username_change', $user_id, $new_user_name, $current_user_name);
+
 		global $wpdb, $aum_general_settings;
 		$table_name 	= $wpdb->prefix . 'username_change_logs';	
 		$loggedin_user_id		= get_current_user_id();		
@@ -356,7 +358,7 @@ class Advanced_Username_Manager_Public {
 		
 		
 		// hook for plugins.
-		do_action( 'advanced_username_changed', $new_user_name, $user );
+		do_action('advanced_username_manager_after_username_change', $user_id, $new_user_name, $current_user_name, $user);
 		
 		$result['success_message'] = esc_html__( 'Username has been changed successfully!', 'advanced-username-manager' );
 		
