@@ -21,44 +21,47 @@ function advanced_username_manager_update_repair_member_slug() {
 function advanced_username_manager_set_bulk_user_profile_slug( $user_ids ) {
 	global $wpdb ;
 
-	if ( empty( $user_ids ) ) {
-		return;
-	}
-	
-	foreach ( $user_ids as $key => $user_id ) {
-		// removed old user meta which have value length 40.
-		$wpdb->query( $wpdb->prepare(
-					"DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE %s AND user_id = %d AND LENGTH(meta_value) = %d",
-					'aum_profile_slug',
-					$user_id,
-					40
-				) );
-
-		// fetch user slug if already exists.
-		$user_slug = advanced_username_manager_core_get_user_slug( $user_id );
-		if ( ! empty( $user_slug ) ) {
-			
-			// Unset user if already setup.
-			unset( $user_ids[$key] );
-		}
-	}
-	
-	$prefix = apply_filters('advanced_username_manager_profile_slug_prefix', 'aum');
-	$start	= 0;
-	$length	= 12;
-	$bps_sql_data = array();
-	foreach ( $user_ids as $key => $user_id ) {			
-		$uuid = strtolower( substr( $prefix . sha1( $user_id.wp_generate_password( 40 ) ), $start, $length ) );
-		$bps_sql_data[] = "({$user_id}, 'aum_profile_slug', '{$uuid}')";	
-	}
-
-	// Insert 'aum_profile_slug' metakey.
-	if ( ! empty( $bps_sql_data ) ) {
-		$bps_sql = "INSERT INTO {$wpdb->usermeta} (user_id, meta_key, meta_value) VALUES " . implode( ', ', $bps_sql_data ); // Remove the trailing comma and space.	
-		$wpdb->query( $bps_sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	}
-	// Flush WP cache.
-	wp_cache_flush();
+	if (empty($user_ids)) {
+        return;
+    }
+    
+    // Process in batches of 50 to prevent memory issues
+    $batch_size = 50;
+    $batches = array_chunk($user_ids, $batch_size);
+    
+    foreach ($batches as $batch) {
+        $bps_sql_data = array();
+        $prefix = apply_filters('advanced_username_manager_profile_slug_prefix', 'aum');
+        $start = 0;
+        $length = 12;
+        
+        foreach ($batch as $user_id) {
+            // Skip processing if user already has a valid slug
+            $existing_slug = wp_cache_get('aum_user_profile_slug_' . $user_id, 'aum');
+            if (false === $existing_slug) {
+                $existing_slug = advanced_username_manager_core_get_user_slug( $user_id );
+                if (!empty($existing_slug)) {
+                    wp_cache_set('aum_user_profile_slug_' . $user_id, $existing_slug, 'aum', 3600);
+                    continue;
+                }
+            } elseif (!empty($existing_slug)) {
+                continue;
+            }
+            
+            // Generate a unique slug
+            $uuid = strtolower(substr($prefix . sha1($user_id . wp_generate_password(40)), $start, $length));
+            $bps_sql_data[] = $wpdb->prepare("(%d, %s, %s)", $user_id, 'aum_profile_slug', $uuid); // Remove the trailing comma and space.
+            
+            // Update the cache with the new slug
+            wp_cache_set('aum_user_profile_slug_' . $user_id, $uuid, 'aum', 3600);
+        }
+        
+        // Insert all slugs in a single query for this batch
+        if (!empty($bps_sql_data)) {
+            $sql = "INSERT INTO {$wpdb->usermeta} (user_id, meta_key, meta_value) VALUES " . implode(', ', $bps_sql_data);
+            $wpdb->query($sql); // phpcs:ignore
+        }
+    }
 } 
 
 /**
@@ -73,8 +76,15 @@ function advanced_username_manager_core_get_user_slug( int $user_id ) {
 	if ( empty( $user_id ) ) {
 		return '';
 	}
-
-	$profile_slug = get_user_meta( $user_id, 'aum_profile_slug', true );
+    
+    // Use object cache for frequently accessed data
+    $cache_key = 'aum_user_profile_slug_' . $user_id;
+    $profile_slug = wp_cache_get($cache_key, 'aum');
+    
+    if (false === $profile_slug) {
+        $profile_slug = get_user_meta($user_id, 'aum_profile_slug', true);
+        wp_cache_set($cache_key, $profile_slug, 'aum', 3600); // Cache for 1 hour
+    }
 
 	/**
 	 * Filters the profile slug based on originally provided user ID.	 
@@ -108,14 +118,23 @@ function advanced_username_manager_set_uri_globals_member_slug( $member_slug ) {
 	
 	global $aum_general_settings, $wpdb;
 	
-	$user_id = $wpdb->get_var(
-		$wpdb->prepare(
-			"SELECT user_id FROM `{$wpdb->usermeta}` WHERE meta_key= %s AND  meta_value = %s  ORDER BY user_id ASC LIMIT %d",
-			'aum_profile_slug',
-			$member_slug,
-			1			
-		)
-	);	
+	// Use cache for performance
+    $cache_key = 'aum_member_slug_' . md5($member_slug);
+    $user_id   = wp_cache_get($cache_key, 'aum');
+
+	if (false === $user_id) {
+        $user_id = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT user_id FROM `{$wpdb->usermeta}` WHERE meta_key = %s AND meta_value = %s LIMIT 1",
+                'aum_profile_slug',
+                $member_slug
+            )
+        );
+        
+        // Cache the result for future lookups
+        wp_cache_set($cache_key, $user_id, 'aum', 3600); // Cache for 1 hour
+    }
+
 	if( isset( $aum_general_settings['bp_profile_slug_format']) && $aum_general_settings['bp_profile_slug_format'] == 'username' ) {
 		if( !empty($user_id) ) {
 			return get_user_by( 'id', $user_id )->user_login;
