@@ -54,6 +54,14 @@ class Advanced_Username_Manager_Public {
 		add_shortcode('username_manager', [$this, 'advanced_username_manager_change_username_func'] );
 	}
 
+	/** 
+	 * Function to check if buddypress exists.
+	 * @return boolean true/false
+	 * @since 1.1.0
+	 */
+	private function has_buddypress() {
+		return class_exists('BuddyPress');
+	}
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
@@ -267,6 +275,8 @@ class Advanced_Username_Manager_Public {
 			wp_send_json_error( $retval );
 		}		
 		
+		$is_super_admin  = false;
+
 		// if it is multisite, before change the username, revoke the admin capability.
 		if ( is_multisite() && is_super_admin( $user_id ) ) {
 
@@ -296,15 +306,24 @@ class Advanced_Username_Manager_Public {
 		
 		$user = new WP_User( $user_id );
 		
-		$wpdb->insert(
-						$table_name,
-						array(
-							'user_id'       => $user_id,
-							'old_username'  => $current_user_name,
-							'new_username'  => $new_user_name,
-							'created_date'	=> date_i18n( 'Y-m-d H:i:s' ),
-						)
-					);
+		$insert_result = $wpdb->insert(
+							$table_name,
+							array(
+								'user_id'       => $user_id,
+								'old_username'  => $current_user_name,
+								'new_username'  => $new_user_name,
+								'created_date'	=> date_i18n( 'Y-m-d H:i:s' ),
+							)
+						);
+
+		if ( false === $insert_result) {
+			// Log the error and notify user
+			error_log('Advanced Username Manager: Failed to log username change - ' . $wpdb->last_error);
+			$result['success_message'] = esc_html__('Username has been changed successfully, but there was an error logging the change.', 'advanced-username-manager');
+		} else {
+			$result['success_message'] = esc_html__('Username has been changed successfully!', 'advanced-username-manager');
+		}
+		
 					
 		$this->advanced_username_manager_send_mail( $user_id, $new_user_name );
 		
@@ -312,7 +331,7 @@ class Advanced_Username_Manager_Public {
 		// delete object cache.
 		clean_user_cache( $user_id );
 		wp_cache_delete( $user_id, 'users' );
-		if( class_exists( 'BuddyPress' ) ) {
+		if( $this->has_buddypress() ) {
 			wp_cache_delete( 'bp_core_userdata_' . $user_id, 'bp' );
 			wp_cache_delete( 'bp_user_username_' . $user_id, 'bp' );
 			wp_cache_delete( 'bp_user_domain_' . $user_id, 'bp' );		
@@ -441,18 +460,22 @@ class Advanced_Username_Manager_Public {
 	 */
 	public function advanced_username_manager_bp_nav_setup() {
 		
-		// only add if settings component is enabled.
-		if ( ! bp_is_active( 'settings' ) ) {
+		// only add if buddypress exists and settings component is enabled.
+		if ( ! $this->has_buddypress() || ! function_exists( 'bp_is_active' ) || ! bp_is_active( 'settings' ) || ! function_exists( 'buddypress' )	 ) {
 			return;
 		}
 		
+		$bp = buddypress();
+		if ( ! isset($bp->settings) || ! isset($bp->settings->slug) ) {
+			return; // return if buddypress settings or settings slug not exists.
+		}
 		$settings_link = bp_displayed_user_domain() . bp_get_settings_slug() . '/';
 
 		bp_core_new_subnav_item( array(
 			'name'            => esc_html__( 'Username Change', 'advanced-username-manager' ),
 			'slug'            => 'username-change',
 			'parent_url'      => $settings_link,
-			'parent_slug'     => buddypress()->settings->slug,
+			'parent_slug'     => $bp->settings->slug,
 			'screen_function' => array( $this, 'advanced_username_manager_change_settings_screen' ),
 			'position'        => 30,
 			'user_has_access' => apply_filters( 'bp_username_changer_user_has_access', $this->aum_user_can_update_username() ),

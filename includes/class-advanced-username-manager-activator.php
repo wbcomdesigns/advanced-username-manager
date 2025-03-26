@@ -45,7 +45,13 @@ class Advanced_Username_Manager_Activator {
 				created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 				PRIMARY KEY (id)) {$charset_collate};";
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-			dbDelta( $bpht_sql );
+			$result = dbDelta( $bpht_sql );
+
+
+			// Log error if table creation fails
+			if ( empty($result) ) {
+				error_log('Advanced Username Manager: Failed to create database table');
+			}
 		}
 		
 		
