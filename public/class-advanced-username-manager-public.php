@@ -183,11 +183,11 @@ class Advanced_Username_Manager_Public {
 		?>
 			<form name="advanced_username_change" method="post" class="aum-standard-form">
 				<div class="aum-input-field">
-					<label for="current_user_name"><?php esc_html_e( 'Current Username', 'advanced-username-manager' ) ?></label>
+					<label for="current_user_name"><?php esc_html_e( 'Current username', 'advanced-username-manager' ) ?></label>
 					<input type="text" name="current_user_name" id="aum_current_user_name" value="<?php echo esc_attr( $current_user->user_login ); ?>" class="settings-input" disabled="disabled"/>
 				</div>
 				<div id="aum_new_user_input_field" class="aum-input-field">
-					<label for="new_user_name"><?php esc_html_e( 'New Username', 'advanced-username-manager' ) ?></label>
+					<label for="new_user_name"><?php esc_html_e( 'New username', 'advanced-username-manager' ) ?></label>
 					<input type="text" name="new_user_name" id="aum_new_user_name" value="" class="settings-input"/>
 					<ul id="aum-autocomplete-suggestions"></ul>
 				</div>				
@@ -225,10 +225,10 @@ class Advanced_Username_Manager_Public {
 									$limit_days_ago, 
 									$user_id ) 
 								);		
-		if( $results != '' ){
-			$next_date = date_i18n('Y-m-d', strtotime( $results .' +'. $limit_days .' days' ) );
+		if( $results != '' ){			
+			$next_date = date_i18n('F j, Y', strtotime( $results .' +'. $limit_days .' days' ) );
 		 	$retval = array(			
-				'error_message'	=> sprintf(esc_html__( 'You already updated your username. You can update your username after %s', 'advanced-username-manager' ) , esc_html($next_date)),
+				'error_message'	=> sprintf(esc_html__( 'You have already updated your username. You can change it again after %s', 'advanced-username-manager' ) , esc_html($next_date)),
 			);
 			wp_send_json_error( $retval );
 		}
@@ -484,7 +484,7 @@ The {$site_name} Team</p>";
 	 * Settings content title
 	 */
 	public function advanced_username_manager_print_title() {
-		 esc_html_e( 'Change Username', 'advanced-username-manager' );
+		 esc_html_e( 'Change username', 'advanced-username-manager' );
 	}
 	
 	/**
@@ -510,13 +510,16 @@ The {$site_name} Team</p>";
 	 *
 	 * @since    1.0.0
 	 */
-	public function advanced_username_manager_woocommerce_account_menu_items( $items ) {		
-		$position = array_search('edit-account', array_keys($items)) + 1;		
-		$items = array_slice($items, 0, $position, true) 
-			+ array( 'change-username' => esc_html__( 'Change Username', 'advanced-username-manager' ) ) 
-			+ array_slice($items, $position, null, true);
-		
-		
+	public function advanced_username_manager_woocommerce_account_menu_items( $items ) {
+		$general_settings 	= get_option( 'advanced_username_manager_general_settings' );
+		$enable_wc_username = ( isset( $general_settings['enable_wc_username'] ) ) ? $general_settings['enable_wc_username'] : '';
+		if( $enable_wc_username ){		
+			$position = array_search('edit-account', array_keys($items)) + 1;		
+			$items = array_slice($items, 0, $position, true) 
+				+ array( 'change-username' => esc_html__( 'Change username', 'advanced-username-manager' ) ) 
+				+ array_slice($items, $position, null, true);
+			
+		}
 		return $items;
 	}
 	
@@ -528,7 +531,7 @@ The {$site_name} Team</p>";
 	public function advanced_username_manager_woocommece_print_form() {
 		
 		?>
-		<h3><?php esc_html_e( 'Change Username', 'advanced-username-manager' );?></h3>
+		<h3><?php esc_html_e( 'Change username', 'advanced-username-manager' );?></h3>
 		<?php
 		$this->advanced_username_manager_print_form();
 	}

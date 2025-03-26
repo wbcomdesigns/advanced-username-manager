@@ -15,10 +15,10 @@
  * @wordpress-plugin
  * Plugin Name:       Advanced Username Manager
  * Plugin URI:        https://wbcomdesigns.com/downloads/advanced-username-manager
- * Description:       This is a description of the plugin.
+ * Description:       Advanced Username Manager allows users to easily change their login username for added flexibility.
  * Version:           1.0.0
  * Author:            Wbcom Designs
- * Author URI:        https://wbcomdesigns.com//
+ * Author URI:        https://wbcomdesigns.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       advanced-username-manager
@@ -99,4 +99,13 @@ function advanced_username_manager_activation_redirect_settings( $plugin ) {
 		exit;
 	}
 
+}
+
+/*
+** Added plugin setting link
+*/
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'advanced_username_manager_settings_link' );
+function advanced_username_manager_settings_link( $settings ) {
+	$settings[] = '<a href="' . esc_url( admin_url( 'admin.php?page=advanced-username-manager&tab=general-setting' ) ) . '">Settings</a>';
+	return $settings;
 }

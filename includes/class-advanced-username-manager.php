@@ -170,6 +170,7 @@ class Advanced_Username_Manager {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'advanced_username_manager_add_admin_menu' );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'advanced_username_manager_save_options' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'advanced_username_manager_hide_all_admin_notices_from_setting_page' );
 	}
 
 	/**

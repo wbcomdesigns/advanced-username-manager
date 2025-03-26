@@ -24,6 +24,9 @@ switch ( $tab ) {
 		break;
 	case 'general-setting':
 		include 'advanced-username-manager-general-setting.php';
+		break;
+	case 'faq':
+		include 'advanced-username-manager-faq-setting.php';
 		break;	
 	default:
 		include 'advanced-username-manager-welcome-page.php';
