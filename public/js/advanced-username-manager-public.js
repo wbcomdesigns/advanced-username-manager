@@ -82,7 +82,7 @@
 		});
 
 		$(document).on('keyup', '#aum_new_user_name', debounce( function (e) {
-			console.log($(this).val());
+			
 			let username = $(this).val();
 			let min_length = aum_options.min_username_length;
 			let max_length = aum_options.max_username_length;
