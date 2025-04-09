@@ -20,3 +20,9 @@
 .nav-tab-wrapper ul li.faq a.nav-tab:before {
     content: "\f101";
 }
+
+.wbcom-settings-section-options .selectize-input {
+	height: auto;
+	box-shadow: none;
+	padding: 0px 10px !important;
+}
