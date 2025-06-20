@@ -121,8 +121,8 @@ class Advanced_Username_Manager_Public {
 			'limit_days'				=> ( isset( $aum_general_settings['limit_days'] ) && $aum_general_settings['limit_days'] != ''  ) ? $aum_general_settings['limit_days'] : 7,
 			'min_username_length'				=> $min_username_length,
 			'max_username_length'				=> $max_username_length,						
-			'min_username_error'			=> sprintf(esc_html__('Username must be at least %s characters long.', 'advanced-username-manager' ), esc_attr($min_username_length) ),
-			'max_username_error'			=> sprintf(esc_html__('Username must not exceed %s characters.', 'advanced-username-manager' ), esc_attr($max_username_length)),			
+			'min_username_error'			=> sprintf(esc_html__('The username must be at least %s characters long.', 'advanced-username-manager' ), esc_attr($min_username_length) ),
+			'max_username_error'			=> sprintf(esc_html__('The username must not exceed %s characters.', 'advanced-username-manager' ), esc_attr($max_username_length)),			
 		);
 		wp_localize_script( $this->plugin_name, 'aum_options', $js_object );
 
@@ -171,7 +171,7 @@ class Advanced_Username_Manager_Public {
 		if( is_array($aum_general_settings['user_roles']) && empty( array_intersect( $current_user_roles, $aum_general_settings['user_roles']) ) ) {
 			?>
 			<div class="aum-error">
-				<?php echo esc_html__( 'You are not allowed to change the username. Please contact the administrator for assistance.', 'advanced-username-manager' ); ?>
+				<?php echo esc_html__( 'You do not have permission to change usernames. Please contact the administrator for assistance.', 'advanced-username-manager' ); ?>
 			</div>
 			<?php
 			return ob_get_clean();
@@ -228,7 +228,7 @@ class Advanced_Username_Manager_Public {
 		if( $results != '' ){			
 			$next_date = date_i18n('F j, Y', strtotime( $results .' +'. $limit_days .' days' ) );
 		 	$retval = array(			
-				'error_message'	=> sprintf(esc_html__( 'You have already updated your username. You can change it again after %s', 'advanced-username-manager' ) , esc_html($next_date)),
+				'error_message'	=> sprintf(esc_html__( 'You have already updated your username. You can change it again after %s.', 'advanced-username-manager' ) , esc_html($next_date)),
 			);
 			wp_send_json_error( $retval );
 		}
@@ -262,7 +262,7 @@ class Advanced_Username_Manager_Public {
 		if ( username_exists( $new_user_name ) ) {			
 			
 			$retval = array(				
-				'error_message'	=> esc_html__( 'Sorry, this username is already in use. Please try another one.', 'advanced-username-manager' ),
+				'error_message'	=> esc_html__( 'Sorry, this username is already in use. You can select from the following suggestions.', 'advanced-username-manager' ),
 			);
 			wp_send_json_error( $retval );
 		}		
@@ -339,7 +339,7 @@ class Advanced_Username_Manager_Public {
 		// hook for plugins.
 		do_action( 'advanced_username_changed', $new_user_name, $user );
 		
-		$result['success_message'] = esc_html__( 'Username has beed changed Successfully!', 'advanced-username-manager' );
+		$result['success_message'] = esc_html__( 'Username has been changed successfully!', 'advanced-username-manager' );
 		
 		$redirect_url = '';		
 		if ( function_exists( 'bp_is_my_profile' ) && $bp_is_my_profile ) {
@@ -372,16 +372,16 @@ class Advanced_Username_Manager_Public {
 		$user 			= get_userdata( $user_id );
 		$site_name     	= get_bloginfo( 'name' );
 		$user_email   	= $user->user_email;
-		$email_subject 	= apply_filters( 'advanced_username_manager_email_subject', sprintf( esc_html__('%s Your Username Has Been Successfully Updated', 'advanced-username-manager'), $site_name ) );
+		$email_subject 	= apply_filters( 'advanced_username_manager_email_subject', sprintf( esc_html__('%s Your Username Has Been Successfully Updated !', 'advanced-username-manager'), $site_name ) );
 		$email_content 	= "<p>Hello {$user->display_name},</p>
 
-<p>We're writing to let you know that your username on MyAwesomeSite has been successfully updated.</p>
+<p>We're writing to let you know that your username on {$site_name} has been successfully updated.</p>
 
 <p>Your new username is: <strong>{$new_user_name}</strong></p>
 
 <p>If you did not request this change, please contact our support team immediately to secure your account.</p>
 
-<p>Thank you for being part of {$site_name}!</p>
+<p>Thank you for being a part of {$site_name}!</p>
 
 <p>Best regards, <br />
 The {$site_name} Team</p>";
@@ -423,7 +423,7 @@ The {$site_name} Team</p>";
 			$suggestions[] = 'the' . ucfirst($username);
 			$suggestions[] = 'best' . ucfirst($username);
 			$suggestions[] = $username . rand(100, 999);			
-			wp_send_json_success(['available' => false, 'suggestions' => array_unique($suggestions), 'message' => esc_html__( 'Sorry, this username is already in use. you can select from following suggestion.', 'advanced-username-manager')]);
+			wp_send_json_success(['available' => false, 'suggestions' => array_unique($suggestions), 'message' => esc_html__( 'Sorry, this username is already in use. You can select from the following suggestions.', 'advanced-username-manager')]);
 		} else {
 
 			wp_send_json_success(['available' => true,'message'=> esc_html__( 'Great! This username is available.', 'advanced-username-manager')]);
